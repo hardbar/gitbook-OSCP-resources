@@ -8,6 +8,7 @@
     * [DevOops](hackthebox/linux/devoops.md)
     * [Lame](hackthebox/linux/lame.md)
     * [SolidState](hackthebox/linux/solidstate.md)
+    * [TartarSauce](hackthebox/linux/tartarsauce.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)
