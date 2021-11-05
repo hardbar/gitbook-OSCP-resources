@@ -10,7 +10,8 @@ description: 10.10.10.51
 
 The following exploits are covered for obtaining the flags on this target: ​
 
-*
+* User - default creds used on exposed James Remote Admin service which allowed for changing user passwords. Check and retreive user mails using new passwords to find SSH creds. SSH as mindy to get rbash shell, use ssh option (-t "bash --noprofile") to get unrestricted shell.
+* Root - world writable python script owned by root, being run every 3 minutes, add code to script to modify SUID bit on /bin/bash, wait a few minutes, run bash -p to get root.
 
 ## Enumeration:
 
