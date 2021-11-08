@@ -10,8 +10,8 @@ description: 10.10.10.88
 
 The following exploits are covered for obtaining the flags on this target: ​
 
-* User -&#x20;
-* Root -&#x20;
+* User - RFI to RCE via vulnerable Wordpress plugin Gwolle
+* Root - Abuse scheduled job running backup script
 
 ## Enumeration:
 
