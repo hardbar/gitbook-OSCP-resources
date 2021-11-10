@@ -10,8 +10,8 @@ description: 10.10.10.88
 
 The following exploits are covered for obtaining the flags on this target: ​
 
-* User - RFI to RCE via vulnerable Wordpress plugin Gwolle
-* Root - Abuse scheduled job running backup script
+* User - RFI to RCE via vulnerable Wordpress plugin Gwolle to get shell as www-data. Sudo tar to get user onuma.
+* Root - Requires code review and understanding of backup script to abuse scheduled job running the script using tar, a SUID binary and making the required changes within a small time window.&#x20;
 
 ## Enumeration:
 
