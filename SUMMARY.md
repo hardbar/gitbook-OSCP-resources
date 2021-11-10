@@ -9,6 +9,7 @@
     * [Lame](hackthebox/linux/lame.md)
     * [SolidState](hackthebox/linux/solidstate.md)
     * [TartarSauce](hackthebox/linux/tartarsauce.md)
+    * [FriendZone](hackthebox/linux/friendzone.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

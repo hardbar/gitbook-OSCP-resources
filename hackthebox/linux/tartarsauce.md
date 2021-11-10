@@ -4,7 +4,7 @@ description: 10.10.10.88
 
 # TartarSauce
 
-![](<../../.gitbook/assets/1 (4).JPG>)
+![](<../../.gitbook/assets/1 (4) (1).JPG>)
 
 ## Overview
 
@@ -152,9 +152,9 @@ Nice, we are able to login using the following creds - admin:admin
 
 The system provides server, directory and other information, as shown below:
 
-![](<../../.gitbook/assets/2 (1).JPG>)
+![](<../../.gitbook/assets/2 (1) (1).JPG>)
 
-![](<../../.gitbook/assets/3 (1).JPG>)
+![](<../../.gitbook/assets/3 (1) (1).JPG>)
 
 Let's check the exploit database with searchsploit:
 
@@ -194,7 +194,7 @@ After following the instructions, it appears that the file upload feature does n
 
 After browsing the admin site a bit more, we find the plugins page, which lists the installed plugins. There is however also an option to install the "Sandbox" plugin. Unfortuantely we cannot install that, or indeed "Delete" or upload anything here either.
 
-![](<../../.gitbook/assets/6 (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
 Let's move on for now. If we do not find anything else, we may need to come back to this, however, based on the checks done thus far, this implementation of Monstra has been severely modified and restricted, and so it may not be the way into the target.
 
@@ -202,7 +202,7 @@ Let's move on for now. If we do not find anything else, we may need to come back
 
 Le's visit the page at [http://10.10.10.88/webservices/wp/](http://10.10.10.88/webservices/wp/)&#x20;
 
-![](<../../.gitbook/assets/4 (1).JPG>)
+![](<../../.gitbook/assets/4 (1) (1).JPG>)
 
 Let's run wpscan next to see what we get. After running it with the default mode, the results reported that there are no plugins detected.
 
@@ -1257,6 +1257,26 @@ After a quick google search, we find the repo for the plugin, [https://github.co
 The latest version appears to be 1.5.4, and so it cannot be 2.3.10, as reported on the target. Looks like the administrator changed the version number to obfuscate the real version information. Based on this, we can therefore assume that it is possible that the version running could be 1.5.3, which means that the RFI vulnerability may actually work. We will have to test it to confirm as we are still not 100% sure at this stage.
 
 According to the RFI exploit, EDB-ID 38861, an unauthenticated user can upload a PHP file with a specific name (wp-load.php), using a vulnerable PHP function in the ajaxrepsonse.php script. The function does not sanitize input to the "abspath" variable, which means we can specify our attacker system as the value for this variable.
+
+{% hint style="danger" %}
+After going through the walkthroughs, it turns out there was a hint within the readme.txt, as shown below. We see that the box creators actually tell us the version was changed specifically to trick wpscan.
+
+
+
+\== Changelog ==
+
+\= 2.3.10 =
+
+* 2018-2-12
+* Changed version from 1.5.3 to 2.3.10 to trick wpscan ;D
+
+\= 1.5.3 =
+
+* 2015-10-01
+* When email is disabled, save it anyway when user is logged in.
+* Add nb\_NO (thanks BjÃ¸rn Inge VÃ¥rvik).
+* Update ru\_RU.
+{% endhint %}
 
 ## Gaining Access
 
