@@ -452,7 +452,11 @@ bash-4.2$
 
 ```
 
-That didn't work because we cannot use the "/" character in the filename. To get around this, we can insert a variable which when read will insert the string "/bin/bash" into the command. To do this, we can use the "which" command as follows.
+That didn't work because we cannot use the "/" character in the filename. Check out the following page which contains some very interesting information pertaining to this:
+
+{% embed url="https://unix.stackexchange.com/questions/359810/kernighan-and-pike-challenge-how-to-put-a-slash-in-a-filename" %}
+
+To get around this, we can insert a variable which when read will insert the string "/bin/bash" into the command. To do this, we can use the "which" command as follows.
 
 ```
 bash-4.2$ which bash
@@ -546,7 +550,7 @@ done
 
 ```
 
-Basically, the script is used to populate and start a new network interface using input from the user.  The regex matches all alphanumeric characters as well as "/", "-" and "space".&#x20;
+Basically, the script is used to populate a network interface configuration file using input from the user.  The regex matches all alphanumeric characters as well as "/", "-" and "space". The final line in the script is important, because it tries to bring up the interface using "ifup" which sources the "guly0" device config file (ifcfg-guly).&#x20;
 
 We can have a look in the /etc/sysconfig/network-scripts/ directory for these "ifcfg" files to see what they look like. For example:
 
@@ -615,7 +619,7 @@ BOOTPROTO=bootp
 [guly@networked network-scripts]$ 
 ```
 
-Despite the error message, the new config is written to "ifcfg-guly" anyway. Because there is no "guly0" device, the config isn't initialized.
+Despite the error message, the new config is written to "ifcfg-guly" anyway. Because there is no "guly0" device, the initialization is delayed.
 
 ## Privilege Escalation
 
@@ -637,13 +641,24 @@ Let's go a quick google search to see if there is a known way to abuse this. A s
 >
 > Yes, any script in that folder is executed by root because of the sourcing technique.
 
-Looking at the above thread, we see a response a couple of days later which confirms this is the expected behaviour, and that basically the sysadmin should not give user's access to edit these network-scripts as root because the scripts themselves run as root via the sour
+Looking at the above thread, we see a post which confirms this is the expected behaviour, and that basically the sysadmin should not give user's access to edit these network-scripts as root because the scripts themselves run as root because they are sourced when when you try to bring up the interface.
 
 Below is an explanation on the difference between executing a script and sourcing it:
 
 {% embed url="https://www.theunixschool.com/2012/04/what-is-sourcing-file.html" %}
 
-Let's give this a try:
+To demonstrate how this works, we can simply define a variable, followed by a space followed by a command, and the command will be executed:
+
+```
+[guly@networked network-scripts]$ x=test id
+x=test id
+uid=1000(guly) gid=1000(guly) groups=1000(guly)
+
+```
+
+Let's give this a try by providing the following text when we are prompted to insert a value for the "interface NAME. Notice that the value before the space is arbitrary, but the value after the space has to be a valid command in order to get the code execution:
+
+> network /bin/bash
 
 ```
 [guly@networked network-scripts]$ sudo /usr/local/sbin/changename.sh
