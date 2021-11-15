@@ -240,7 +240,7 @@ Let's have a look at the page source and make a note of anything interesting:
 * Rooms page uses a variable as input for specific room, possible sql injection, need to test this
 * There is a phpmyadmin page, baic default creds options do not work, such as admin:admin, root:root, admin:password etc
 
-### Review the source code for any scripts that are being used on each page
+#### Review the source code for any scripts that are being used on each page
 
 Let's have a look at the scripts using the browser dev tools and make a note of anything interesting:
 
@@ -260,6 +260,10 @@ There is also the "phpmyadmin" page, which requires some credentials. We may nee
 
 The [http://10.10.10.143/phpmyadmin/ChangeLog](http://10.10.10.143/phpmyadmin/ChangeLog) confirms that the phpmyadmin version is 4.8.0 (2018-04-07), which we should also make a note of.
 
+## RCE Method 1 - SQLi & phpmyadmin (long way)
+
+This is a fairly detailed path to RCE. We wanted to write this in a tutorial style and so it is quite long.
+
 ### SQL Injection - Discovery&#x20;
 
 Let's investigate and probe the parameter on the room booking page.
@@ -276,7 +280,7 @@ We get a response back from the server with a "Content-Length: 6204" header, amo
 
 ![](<../../.gitbook/assets/6 (3).JPG>)
 
-This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect number, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
+This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect value, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
 
 ![](<../../.gitbook/assets/10 (1).JPG>)
 
@@ -287,11 +291,11 @@ Another step that I think is very important here is to try and understand what i
 * User clicks to book a room
 * Browser sends request with a parameter linked to the specific item clicked
 * Server receives the request, constructs and send a SQL query to the database, parses the returned data, reconstructs the page, and sends the response to the requestor
-* Looking at the returned page, we see an image, star rating, room type, dollar value, description and room id value (from the initial GET request)
+* Looking at the returned page, we see an image, star rating, room type, cost, description and room id value (from the initial GET request)
 * That adds up to 6 pieces of returned data being displayed back to the requestor, therefore we can assume that the table in the database on the server containing the data has at least 6 columns&#x20;
 * It's important to realise that there may be other data returned from the database that is not being displayed, or some data that is just not being returned, but this gives us a good idea of what might be happening in the background and what the table structure may look like
 * Based on the above, we can make an educated guess at the basic structure of the SQL query:
-  * SELECT \* FROM _table\_name _WHERE cod=1;
+  * SELECT image, star rating, room type, cost, description, room id FROM _table\_name _WHERE cod=1;
 
 {% hint style="info" %}
 NOTE: It's helpful to create a table to keep track of what has been tested and the results of those tests. In this case, we are using the content length, but it could be whatever makes the logic work within a specific test scenario and should therefore be adapted as applicable. Scroll down to see the table format being used here.
@@ -335,19 +339,7 @@ http://10.10.10.143/room.php?cod=1 AND 1=1   --> expected response size = 6204
 http://10.10.10.143/room.php?cod=1 AND 1=2   --> expected response size = 5916
 ```
 
-This works, and we get the expected responses back. So why did the "AND" work?
-
-## ADD REASONS HERE
-
-
-
-
-
-
-
-
-
-Thus far, we have confirmed that there is a vulnerable injection point, and we have confirmed that we can manipulate the query to get back expected results. Our table at this stage is as follows:
+This works, and we get the expected responses back. Thus far, we have confirmed that there is a vulnerable injection point, and we have confirmed that we can manipulate the query to get back expected results. Our table at this stage is as follows:
 
 ![](<../../.gitbook/assets/11 (1).JPG>)
 
@@ -361,7 +353,7 @@ In order to actually extract data from the table, we need to know a few pieces o
 * The table name/s of the target database
 * The name of each column in the target table of the target database
 
-To do this, we will use the "UNION" injection technique. For an explanation on why we need the number of columns and more please read the following article:
+To do this, we will use the "UNION" injection technique. For more information on this check out the following article:
 
 {% embed url="https://portswigger.net/web-security/sql-injection/union-attacks" %}
 
@@ -530,6 +522,20 @@ select load_file('/var/www//html/ab12.php');
 Great, all we need to do now is visit the page to get remote code execution:
 
 ![](../../.gitbook/assets/25.JPG)
+
+## RCE Method 2 - SQLi INTO OUTFILE
+
+The quick way to get RCE is to simply write a file to the target using the SQLi we found in the rooms.php page.
+
+> cod=99 UNION SELECT NULL,NULL,(SELECT ''),NULL,NULL,NULL,NULL INTO OUTFILE '/var/www/html/cd23.php'
+
+Using BURP, send the payload to the target. The response we get back includes the "Content-Length: 5916" header, and so there is no confirmation that this worked.&#x20;
+
+![](../../.gitbook/assets/26.JPG)
+
+However, browsing to the page at [http://10.10.10.143/cd23.php](http://10.10.10.143/cd23.php?cmd=id) confirms it has been created, and we can now execute commands on the target.
+
+![](../../.gitbook/assets/27.JPG)
 
 ## Gaining Access
 
