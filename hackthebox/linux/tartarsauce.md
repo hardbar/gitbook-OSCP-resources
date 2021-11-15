@@ -152,7 +152,7 @@ Nice, we are able to login using the following creds - admin:admin
 
 The system provides server, directory and other information, as shown below:
 
-![](<../../.gitbook/assets/2 (1) (1).JPG>)
+![](<../../.gitbook/assets/2 (1) (1) (1).JPG>)
 
 ![](<../../.gitbook/assets/3 (1) (1).JPG>)
 

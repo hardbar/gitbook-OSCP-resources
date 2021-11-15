@@ -268,7 +268,7 @@ Starting with the first entry, let's visit the page at administrator1.friendzone
 
 Let's visit the page:
 
-![](<../../.gitbook/assets/2 (1).JPG>)
+![](<../../.gitbook/assets/2 (1) (1).JPG>)
 
 Using the creds we found on the SMB share, we are able to login, and once we do, we get the following message (instead of a redirect ??):
 
@@ -370,7 +370,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 We now know that there is an /uploads/upload.php file. Visiting the page at [https://uploads.friendzone.red/upload.php](https://uploads.friendzone.red/upload.php) we get the following:
 
-![](<../../.gitbook/assets/7 (1).JPG>)
+![](<../../.gitbook/assets/7 (1) (1).JPG>)
 
 Let's try to reach the "upload.php" file using file traversal in the pagename parameter, like this:
 

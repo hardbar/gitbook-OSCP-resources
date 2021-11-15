@@ -11,6 +11,7 @@
     * [TartarSauce](hackthebox/linux/tartarsauce.md)
     * [FriendZone](hackthebox/linux/friendzone.md)
     * [Networked](hackthebox/linux/networked.md)
+    * [Jarvis](hackthebox/linux/jarvis.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)
