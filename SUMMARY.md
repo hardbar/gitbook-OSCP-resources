@@ -12,6 +12,7 @@
     * [FriendZone](hackthebox/linux/friendzone.md)
     * [Networked](hackthebox/linux/networked.md)
     * [Jarvis](hackthebox/linux/jarvis.md)
+    * [Mirai](hackthebox/linux/mirai.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

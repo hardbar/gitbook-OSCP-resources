@@ -4,7 +4,7 @@ description: 10.10.10.143
 
 # Jarvis
 
-![](<../../.gitbook/assets/1 (5).JPG>)
+![](<../../.gitbook/assets/1 (5) (1).JPG>)
 
 ## Overview
 
