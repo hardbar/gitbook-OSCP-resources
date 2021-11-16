@@ -252,11 +252,11 @@ Let's visit the pages and look around.
 
 Most of the links don't work, but the link to the rooms page and the dining & bar page do work. On the rooms page, clicking on "Book" on any of the rooms takes us to another page, which is using the room we clicked on as input to a variable "cod", so this is worth taking note of as we could test this for sqli. The "order" options on the dining & bar page do not work.
 
-![](<../../.gitbook/assets/4 (2).JPG>)
+![](<../../.gitbook/assets/4 (2) (1).JPG>)
 
 There is also the "phpmyadmin" page, which requires some credentials. We may need to come back to this later as attempts to use basic credentials here doesn't work.
 
-![](<../../.gitbook/assets/3 (3).JPG>)
+![](<../../.gitbook/assets/3 (3) (1).JPG>)
 
 The [http://10.10.10.143/phpmyadmin/ChangeLog](http://10.10.10.143/phpmyadmin/ChangeLog) confirms that the phpmyadmin version is 4.8.0 (2018-04-07), which we should also make a note of.
 
@@ -282,7 +282,7 @@ We get a response back from the server with a "Content-Length: 6204" header, amo
 
 This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect value, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
 
-![](<../../.gitbook/assets/10 (1).JPG>)
+![](<../../.gitbook/assets/10 (1) (1).JPG>)
 
 As we can see, we get a response back with a different content length. This is the second part of our baseline. Going forward, we can compare our results to this set or pair of queries, which will help us to determine how this code is working under the hood.
 
@@ -1016,7 +1016,7 @@ root@jarvis:/# ​ ​ ​ ​ ​
 
 ## Resources
 
-![](<../../.gitbook/assets/9 (1).JPG>)
+![](<../../.gitbook/assets/9 (1) (1).JPG>)
 
 {% embed url="https://blog.vulnspy.com/2018/06/21/phpMyAdmin-4-8-x-Authorited-CLI-to-RCE" %}
 
