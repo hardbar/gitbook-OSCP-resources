@@ -4,7 +4,7 @@ description: 10.10.10.48
 
 # Mirai
 
-![](<../../.gitbook/assets/1 (5).JPG>)
+![](<../../.gitbook/assets/1 (6).JPG>)
 
 ## Overview
 
@@ -456,10 +456,10 @@ A  quick google search for " " finds the following page:
 
 {% embed url="https://unix.stackexchange.com/questions/80270/unix-linux-undelete-recover-deleted-files" %}
 
-Using the "grep" command, we can read text from the device file. Note that there is alot of unreadable characters in the output, and so below I've removed them and left just the flag and some other text.
+Using the "grep" command, we can read text from the device file. Note that there is alot of unreadable characters in the output, and so below I've used a simple regex to only return alphanumeric characters:
 
 ```
-root@raspberrypi:/# grep -a -C 200 -F 'root.txt' /dev/sdb
+root@raspberrypi:/# grep -a '[a-zA-Z0-9]' /dev/sdb
 ...[TRUNCATED]
 3d3e483143ff12ec505d026fa13e020b
 Damnit! Sorry man I accidentally deleted your files off the USB stick.
