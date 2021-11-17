@@ -14,6 +14,7 @@
     * [Jarvis](hackthebox/linux/jarvis.md)
     * [Mirai](hackthebox/linux/mirai.md)
     * [Popcorn](hackthebox/linux/popcorn.md)
+    * [Haircut](hackthebox/linux/haircut.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

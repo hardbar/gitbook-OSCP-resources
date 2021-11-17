@@ -154,7 +154,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 The home page contains some text, and a hidden comment in the page source. The page is loading index.php.
 
-![](<../../.gitbook/assets/2 (2).JPG>)
+![](<../../.gitbook/assets/2 (2) (1).JPG>)
 
 The upload.php page looks interesting. If we can upload a reverse shell script, we could gain access to the box as the user running the web service.
 
