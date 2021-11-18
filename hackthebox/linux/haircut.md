@@ -131,7 +131,7 @@ Let's visit the exposed.php page. Clicking on the "Go" button returns some infor
 
 If we clear the form field and hit the "Go" button, we get an error confirming that this page is using the "curl" program.
 
-![](<../../.gitbook/assets/4 (3).JPG>)
+![](<../../.gitbook/assets/4 (3) (1).JPG>)
 
 If we enter a bogus page, like bogus.html, we get a 404 error.&#x20;
 

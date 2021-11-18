@@ -311,7 +311,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 ​There is alot to unpack here. Let's start by registering a user, logging in and looking around.
 
-![](<../../.gitbook/assets/2 (3).JPG>)
+![](<../../.gitbook/assets/2 (3) (1).JPG>)
 
 Let's copy a PHP reverse shell script to our working directory and modify it with our IP and port.
 
@@ -362,7 +362,7 @@ Once the torrent file is downloaded, we can upload it to the target. Information
 
 Scrolling down on this page, we find an option to edit the torrent. Clicking on the "Edit this torrent" button opens a new window:
 
-![](<../../.gitbook/assets/5 (2).JPG>)
+![](<../../.gitbook/assets/5 (2) (1).JPG>)
 
 ![](<../../.gitbook/assets/6 (2).JPG>)
 

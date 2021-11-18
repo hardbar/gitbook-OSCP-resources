@@ -162,7 +162,7 @@ The upload.php page looks interesting. If we can upload a reverse shell script, 
 
 The photos.php page contains the image files that are uploaded, presumably using the upload.php page:
 
-![](<../../.gitbook/assets/5 (2) (1).JPG>)
+![](<../../.gitbook/assets/5 (2) (1) (1).JPG>)
 
 We can test this by uploading an image file, and checking the photos page. After uploading a file, we get a message back, "file uploaded, refresh gallery", which confirms the upload was successful.
 
@@ -170,7 +170,7 @@ We can test this by uploading an image file, and checking the photos page. After
 
 Next, let's checkout the /backups directory. There is a file available which we can download:
 
-![](<../../.gitbook/assets/3 (2).JPG>)
+![](<../../.gitbook/assets/3 (2) (1).JPG>)
 
 Let's extract it and see what we get:
 
