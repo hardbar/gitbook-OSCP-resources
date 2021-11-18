@@ -364,7 +364,7 @@ Scrolling down on this page, we find an option to edit the torrent. Clicking on 
 
 ![](<../../.gitbook/assets/5 (2) (1).JPG>)
 
-![](<../../.gitbook/assets/6 (2).JPG>)
+![](<../../.gitbook/assets/6 (2) (1).JPG>)
 
 Let's see if we can upload our PHP script here. We try the following, none of which works:
 

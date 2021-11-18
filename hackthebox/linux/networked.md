@@ -166,7 +166,7 @@ The photos.php page contains the image files that are uploaded, presumably using
 
 We can test this by uploading an image file, and checking the photos page. After uploading a file, we get a message back, "file uploaded, refresh gallery", which confirms the upload was successful.
 
-![](<../../.gitbook/assets/6 (2) (1).JPG>)
+![](<../../.gitbook/assets/6 (2) (1) (1).JPG>)
 
 Next, let's checkout the /backups directory. There is a file available which we can download:
 
