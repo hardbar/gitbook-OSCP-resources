@@ -10,8 +10,8 @@ description: 10.10.10.162
 
 The following exploits are covered for obtaining the flags on this target: ​
 
-* User -
-* Root -
+* User - NoSQLi to get creds for two users. SSH as user "mango" and su to user "admin".
+* Root - SUID binary jjs
 
 ## Enumeration:
 
