@@ -194,7 +194,7 @@ After following the instructions, it appears that the file upload feature does n
 
 After browsing the admin site a bit more, we find the plugins page, which lists the installed plugins. There is however also an option to install the "Sandbox" plugin. Unfortuantely we cannot install that, or indeed "Delete" or upload anything here either.
 
-![](<../../.gitbook/assets/6 (1) (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1) (1).JPG>)
 
 Let's move on for now. If we do not find anything else, we may need to come back to this, however, based on the checks done thus far, this implementation of Monstra has been severely modified and restricted, and so it may not be the way into the target.
 

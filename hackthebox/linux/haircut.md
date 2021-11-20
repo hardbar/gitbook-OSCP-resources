@@ -159,7 +159,7 @@ We get back the contents of the /etc/passwd file. Let's see if we can view the c
 
 If we right click and view page source for the page above, which displays the code in a more human readble format:
 
-![](<../../.gitbook/assets/8 (2).JPG>)
+![](<../../.gitbook/assets/8 (2) (1).JPG>)
 
 There are a number of disallowed characters and commands which we will need to try and bypass.
 

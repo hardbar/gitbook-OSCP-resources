@@ -282,7 +282,7 @@ We get a response back from the server with a "Content-Length: 6204" header, amo
 
 This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect value, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
 
-![](<../../.gitbook/assets/10 (1) (1).JPG>)
+![](<../../.gitbook/assets/10 (1) (1) (1).JPG>)
 
 As we can see, we get a response back with a different content length. This is the second part of our baseline. Going forward, we can compare our results to this set or pair of queries, which will help us to determine how this code is working under the hood.
 
@@ -341,7 +341,7 @@ http://10.10.10.143/room.php?cod=1 AND 1=2   --> expected response size = 5916
 
 This works, and we get the expected responses back. Thus far, we have confirmed that there is a vulnerable injection point, and we have confirmed that we can manipulate the query to get back expected results. Our table at this stage is as follows:
 
-![](<../../.gitbook/assets/11 (1).JPG>)
+![](<../../.gitbook/assets/11 (1) (1).JPG>)
 
 ### SQL Injection - Data Extraction
 
@@ -376,7 +376,7 @@ http://10.10.10.143/room.php?cod=1 UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NU
 
 We start with two "null" values, and increment with each request, until we reach 7 "NULL" values. Table below summarizes the results:
 
-![](<../../.gitbook/assets/12 (1).JPG>)
+![](<../../.gitbook/assets/12 (1) (1).JPG>)
 
 Based on the above, we can assume that there are 7 columns.&#x20;
 
@@ -398,7 +398,7 @@ cod=99+UNION+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,@@version
 
 The screenshot below shows the result from the payload in row 3 above. All of the first 6 worked, but row 7 didn't. Since I got returned data, I'm not going to worry about that. I chose row 3 because I can easily search for "price-room" to see the output for future requests, as shown below. BURP also has a handy "Auto-scroll" option which goes directly to the string being searched for. This can be enabled by clicking on the "+" button in the response pane.&#x20;
 
-![](../../.gitbook/assets/13.JPG)
+![](<../../.gitbook/assets/13 (1).JPG>)
 
 Now that we know the database is running MariaDB (MySQL variant), we can customize our queries to this specific target. MySQL has a number of built in functions we can use to extract more information:
 
@@ -463,7 +463,7 @@ The query to extract data from the "User" and "Password" fields is as follows:
 
 The results:
 
-![](../../.gitbook/assets/17.JPG)
+![](<../../.gitbook/assets/17 (1).JPG>)
 
 Nice, we have extracted some user credentials, albeit a username and a hashed password.
 
@@ -475,7 +475,7 @@ We can use an online hash cracker to easily crack this hash, for example [https:
 
 We now have a set of credentials, and we can use it to successfully login to the [http://10.10.10.143/phpmyadmin](http://10.10.10.143/phpmyadmin/) page.
 
-![](../../.gitbook/assets/18.JPG)
+![](<../../.gitbook/assets/18 (1).JPG>)
 
 ### Phpmyadmin
 

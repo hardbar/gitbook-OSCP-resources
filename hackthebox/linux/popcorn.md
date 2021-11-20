@@ -362,7 +362,7 @@ Once the torrent file is downloaded, we can upload it to the target. Information
 
 Scrolling down on this page, we find an option to edit the torrent. Clicking on the "Edit this torrent" button opens a new window:
 
-![](<../../.gitbook/assets/5 (2) (1).JPG>)
+![](<../../.gitbook/assets/5 (2) (1) (1).JPG>)
 
 ![](<../../.gitbook/assets/6 (2) (1).JPG>)
 

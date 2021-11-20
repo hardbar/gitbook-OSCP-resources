@@ -16,6 +16,7 @@
     * [Popcorn](hackthebox/linux/popcorn.md)
     * [Haircut](hackthebox/linux/haircut.md)
     * [Mango](hackthebox/linux/mango.md)
+    * [Doctor](hackthebox/linux/doctor.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

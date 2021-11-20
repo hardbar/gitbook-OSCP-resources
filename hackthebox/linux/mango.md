@@ -4,7 +4,7 @@ description: 10.10.10.162
 
 # Mango
 
-![](<../../.gitbook/assets/1 (7).JPG>)
+![](<../../.gitbook/assets/1 (7) (1).JPG>)
 
 ## Overview
 
@@ -347,7 +347,7 @@ Let's test the login parameters with the following basic payloads:
 
 > username\[$ne]=wronguser\&password\[$ne]=wrongpwd\&login=login
 
-![](<../../.gitbook/assets/5 (2).JPG>)
+![](<../../.gitbook/assets/5 (2) (1).JPG>)
 
 We get a response message with a redirect to home.php. We have just bypassed the login page, and after being redirected, we end up at the page shown below:
 
