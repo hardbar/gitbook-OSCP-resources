@@ -127,11 +127,11 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Let's visit the exposed.php page. Clicking on the "Go" button returns some information pertaining to the example site listed.
 
-![](<../../.gitbook/assets/2 (2).JPG>)
+![](<../../.gitbook/assets/2 (2) (1).JPG>)
 
 If we clear the form field and hit the "Go" button, we get an error confirming that this page is using the "curl" program.
 
-![](<../../.gitbook/assets/4 (3) (1).JPG>)
+![](<../../.gitbook/assets/4 (3) (1) (1).JPG>)
 
 If we enter a bogus page, like bogus.html, we get a 404 error.&#x20;
 
@@ -149,13 +149,13 @@ Let's see if we can read local files:
 
 > file:///etc/passwd
 
-![](<../../.gitbook/assets/5 (3).JPG>)
+![](<../../.gitbook/assets/5 (3) (1).JPG>)
 
 We get back the contents of the /etc/passwd file. Let's see if we can view the contents of the exposed.php file:
 
 > file:///var/www/html/exposed.php
 
-![](<../../.gitbook/assets/7 (3).JPG>)
+![](<../../.gitbook/assets/7 (3) (1).JPG>)
 
 If we right click and view page source for the page above, which displays the code in a more human readble format:
 

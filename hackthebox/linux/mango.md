@@ -281,7 +281,7 @@ We can visit the sites we have found and look around. The two HTTPS sites look t
 
 The page at http://mango.htb is forbidden, and the login page at http://staging-order.mango.htb is shown below:
 
-![](<../../.gitbook/assets/3 (2).JPG>)
+![](<../../.gitbook/assets/3 (2) (1).JPG>)
 
 #### Review the source code for each page
 
@@ -311,7 +311,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Let's test the login page for SQLi vulnerabilities. First, we'll run BURP and configure the browser to use it. Next, turn on intercept and attempt a login. Since this is a POST request, the login information is contained within the body of the request. In BURP, send the request to the repeater and click go:
 
-![](<../../.gitbook/assets/4 (3).JPG>)
+![](<../../.gitbook/assets/4 (3) (1).JPG>)
 
 Looking at the response, there is nothing to indicate that the login failed, aside from the fact that we are presented with the Login page again. There are no error messages.
 

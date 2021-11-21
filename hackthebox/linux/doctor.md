@@ -195,7 +195,7 @@ Let's make a note of this and move on.
 
 Next, let's check out the page on port 8089:
 
-![](<../../.gitbook/assets/6 (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
 There are 4 links on the page:
 
