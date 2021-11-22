@@ -276,7 +276,7 @@ Using the creds we found on the SMB share, we are able to login, and once we do,
 
 Visiting the page at [https://administrator1.friendzone.red/dashboard.php](https://administrator1.friendzone.red/dashboard.php), we are presented with the following instructions:
 
-![](<../../.gitbook/assets/4 (1) (1).JPG>)
+![](<../../.gitbook/assets/4 (1) (1) (1).JPG>)
 
 First, we need to find a way to upload something. Looking at the output from the dig comand, we saw that the zone transfer also included "uploads.friendzone.red", so we can try upload something there.
 

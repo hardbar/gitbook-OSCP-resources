@@ -4,7 +4,7 @@ description: 10.10.10.48
 
 # Mirai
 
-![](<../../.gitbook/assets/1 (6) (1).JPG>)
+![](<../../.gitbook/assets/1 (6) (1) (1).JPG>)
 
 ## Overview
 

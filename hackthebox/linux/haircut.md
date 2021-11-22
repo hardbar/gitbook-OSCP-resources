@@ -149,7 +149,7 @@ Let's see if we can read local files:
 
 > file:///etc/passwd
 
-![](<../../.gitbook/assets/5 (3) (1).JPG>)
+![](<../../.gitbook/assets/5 (3) (1) (1).JPG>)
 
 We get back the contents of the /etc/passwd file. Let's see if we can view the contents of the exposed.php file:
 
@@ -159,7 +159,7 @@ We get back the contents of the /etc/passwd file. Let's see if we can view the c
 
 If we right click and view page source for the page above, which displays the code in a more human readble format:
 
-![](<../../.gitbook/assets/8 (2) (1).JPG>)
+![](<../../.gitbook/assets/8 (2) (1) (1).JPG>)
 
 There are a number of disallowed characters and commands which we will need to try and bypass.
 

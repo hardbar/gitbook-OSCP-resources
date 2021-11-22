@@ -334,7 +334,7 @@ rshell.php.gif: GIF image data, version 87a, 15370 x 28735
 
 Next, go to the upload page and attempt to upload the script, which we have named "rshell.php". We get an error message:&#x20;
 
-![](<../../.gitbook/assets/3 (3).JPG>)
+![](<../../.gitbook/assets/3 (3) (1).JPG>)
 
 We try the following filenames to try and bypass the upload restrictions, however, none of them work:
 
@@ -376,7 +376,7 @@ Let's see if we can upload our PHP script here. We try the following, none of wh
 
 Next, we try rshell.php.gif, and it works.
 
-![](<../../.gitbook/assets/7 (2).JPG>)
+![](<../../.gitbook/assets/7 (2) (1).JPG>)
 
 Start a netcat listener, and refresh the torrent page.&#x20;
 

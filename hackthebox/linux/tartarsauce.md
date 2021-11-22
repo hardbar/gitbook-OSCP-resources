@@ -202,7 +202,7 @@ Let's move on for now. If we do not find anything else, we may need to come back
 
 Le's visit the page at [http://10.10.10.88/webservices/wp/](http://10.10.10.88/webservices/wp/)&#x20;
 
-![](<../../.gitbook/assets/4 (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/4 (1) (1) (1) (1).JPG>)
 
 Let's run wpscan next to see what we get. After running it with the default mode, the results reported that there are no plugins detected.
 

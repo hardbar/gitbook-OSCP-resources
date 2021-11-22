@@ -4,7 +4,7 @@ description: 10.10.10.206
 
 # Passage
 
-![](<../../.gitbook/assets/1 (6).JPG>)
+![](<../../.gitbook/assets/1 (6) (1).JPG>)
 
 ## Overview
 
@@ -224,7 +224,7 @@ There is a register option, so we register an account and login, after which we 
 
 We can upload an image file (png), and we get a success message back. The image appears on the "Personal options" page, and if we "View image info", we can see that it is stored in [http://passage.htb/CuteNews/uploads/](http://passage.htb/CuteNews/uploads/) which is accessible.
 
-![](<../../.gitbook/assets/5 (3).JPG>)
+![](<../../.gitbook/assets/5 (3) (1).JPG>)
 
 ![](<../../.gitbook/assets/6 (1).JPG>)
 

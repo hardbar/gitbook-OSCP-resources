@@ -158,7 +158,7 @@ The home page contains some text, and a hidden comment in the page source. The p
 
 The upload.php page looks interesting. If we can upload a reverse shell script, we could gain access to the box as the user running the web service.
 
-![](<../../.gitbook/assets/4 (1).JPG>)
+![](<../../.gitbook/assets/4 (1) (1).JPG>)
 
 The photos.php page contains the image files that are uploaded, presumably using the upload.php page:
 

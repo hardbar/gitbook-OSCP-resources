@@ -209,7 +209,7 @@ There are 4 links on the page:
 
 Let's try the /services/template route we found with dirsearch:
 
-![](<../../.gitbook/assets/8 (2).JPG>)
+![](<../../.gitbook/assets/8 (2) (1).JPG>)
 
 There are 3 links on this page:
 
