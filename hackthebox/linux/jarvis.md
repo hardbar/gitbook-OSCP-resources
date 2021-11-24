@@ -1016,7 +1016,7 @@ root@jarvis:/# ​ ​ ​ ​ ​
 
 ## Resources
 
-![](<../../.gitbook/assets/9 (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/9 (1) (1) (1) (1).JPG>)
 
 {% embed url="https://blog.vulnspy.com/2018/06/21/phpMyAdmin-4-8-x-Authorited-CLI-to-RCE" %}
 

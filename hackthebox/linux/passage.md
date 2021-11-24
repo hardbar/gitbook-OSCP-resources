@@ -636,11 +636,21 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzXiscFGV3l9T2gvXOkh9w+BpPnhFv5AOPagArgzWD
 This means that we should be able to SSH to the target as the user "nadav" using the private key owned by the user "paul". Let's try it:
 
 ```
-└─$ ssh -i ~/Downloads/passage/paul_id_rsa nadav@10.10.10.206
+└─$ ssh -i paul_id_rsa nadav@10.10.10.206
 Last login: Mon Aug 31 15:07:54 2020 from 127.0.0.1
 nadav@passage:~$ id
 uid=1000(nadav) gid=1000(nadav) groups=1000(nadav),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare)
 nadav@passage:~$
+```
+
+We could also just SSH locally. This is handy if the service is only listening on localhost.
+
+```
+paul@passage:~/.ssh$ ssh -i id_rsa nadav@127.0.0.1
+Last login: Mon Aug 31 15:07:54 2020 from 127.0.0.1
+nnadav@passage:~$ id
+uid=1000(nadav) gid=1000(nadav) groups=1000(nadav),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare)
+nadav@passage:~$ 
 ```
 
 ## Enumeration as "nadav"

