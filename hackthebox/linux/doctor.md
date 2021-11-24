@@ -4,7 +4,7 @@ description: 10.10.10.209
 
 # Doctor
 
-![](<../../.gitbook/assets/1 (7).JPG>)
+![](<../../.gitbook/assets/1 (7) (1).JPG>)
 
 ## Overview
 
@@ -185,7 +185,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 ​There are two URLs to check out. Let's visit the page on port 80 first:
 
-![](<../../.gitbook/assets/2 (4).JPG>)
+![](<../../.gitbook/assets/2 (4) (1).JPG>)
 
 It's a pretty basic webpage, where most of the links on the page are dead. If we look at the page source, we do find an email address:
 

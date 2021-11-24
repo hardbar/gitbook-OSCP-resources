@@ -4,7 +4,7 @@ description: 10.10.10.162
 
 # Mango
 
-![](<../../.gitbook/assets/1 (7) (1).JPG>)
+![](<../../.gitbook/assets/1 (7) (1) (1).JPG>)
 
 ## Overview
 

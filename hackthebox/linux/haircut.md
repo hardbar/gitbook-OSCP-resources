@@ -143,7 +143,7 @@ We can also try special characters, but there is a filter which is not alloing t
 >
 > http://localhost/test.html ||
 
-![](<../../.gitbook/assets/3 (4).JPG>)
+![](<../../.gitbook/assets/3 (4) (1).JPG>)
 
 Let's see if we can read local files:
 
