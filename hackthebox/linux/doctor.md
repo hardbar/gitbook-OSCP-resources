@@ -233,7 +233,7 @@ A google search for "splunk exploit" finds the following page, however, in order
 
 Let's move on for now. If we visit the page at http://doctors.htb, we find a login form and a registration page.
 
-![](<../../.gitbook/assets/4 (4).JPG>)
+![](<../../.gitbook/assets/4 (4) (1).JPG>)
 
 Let's register an account. After creating the account, we get the following message, and it logs us in and takes us to the home page.
 

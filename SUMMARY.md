@@ -20,6 +20,7 @@
     * [Passage](hackthebox/linux/passage.md)
     * [Time](hackthebox/linux/time.md)
     * [Shocker](hackthebox/linux/shocker.md)
+    * [Bashed](hackthebox/linux/bashed.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

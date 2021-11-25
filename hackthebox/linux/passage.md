@@ -4,7 +4,7 @@ description: 10.10.10.206
 
 # Passage
 
-![](<../../.gitbook/assets/1 (6) (1).JPG>)
+![](<../../.gitbook/assets/1 (6) (1) (1).JPG>)
 
 ## Overview
 
@@ -107,7 +107,7 @@ Let's run a Nikto scan against the target.
 
 ​ Let's run a dirbuster scan against the target. Since we know the site is implementing fail2ban, let's limit the number of request being sent to the target as follows:
 
-![](<../../.gitbook/assets/3 (2).JPG>)
+![](<../../.gitbook/assets/3 (2) (1).JPG>)
 
 When we ran this, it didn't take very long to find the "CuteNews" directory before getting errors:
 

@@ -281,7 +281,7 @@ We can visit the sites we have found and look around. The two HTTPS sites look t
 
 The page at http://mango.htb is forbidden, and the login page at http://staging-order.mango.htb is shown below:
 
-![](<../../.gitbook/assets/3 (2) (1).JPG>)
+![](<../../.gitbook/assets/3 (2) (1) (1).JPG>)
 
 #### Review the source code for each page
 
@@ -351,7 +351,7 @@ Let's test the login parameters with the following basic payloads:
 
 We get a response message with a redirect to home.php. We have just bypassed the login page, and after being redirected, we end up at the page shown below:
 
-![](<../../.gitbook/assets/6 (2).JPG>)
+![](<../../.gitbook/assets/6 (2) (1).JPG>)
 
 Ok, now what? We review the page source but there is nothing of interest. However, since we know there is a NoSQLi in the login form, let's attempt to extract data from the database using the vulnerable form.
 

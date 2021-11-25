@@ -4,7 +4,7 @@ description: 10.10.10.218
 
 # Luanne
 
-![](<../../.gitbook/assets/1 (6).JPG>)
+![](<../../.gitbook/assets/1 (6) (1).JPG>)
 
 ## Overview
 
@@ -251,7 +251,7 @@ For now, let's make a note of these and move on.
 
 We also found the /weather/forecast route on the port 80 website, so let's check that out:
 
-![](<../../.gitbook/assets/2 (5).JPG>)
+![](<../../.gitbook/assets/2 (5) (1).JPG>)
 
 Using the information from the page above, let's try [http://10.10.10.218/weather/forecast?city=list](http://10.10.10.218/weather/forecast?city=list)
 
