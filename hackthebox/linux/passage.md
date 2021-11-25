@@ -218,7 +218,7 @@ Let's add an entry for "passage.htb" to our /etc/hosts file and visit it in the 
 
 Browsing to the page at [http://passage.htb/CuteNews/](http://passage.htb/CuteNews/) reveals a login form, and the version of CuteNews is 2.1.2.
 
-![](<../../.gitbook/assets/4 (3).JPG>)
+![](<../../.gitbook/assets/4 (3) (1).JPG>)
 
 There is a register option, so we register an account and login, after which we are redirected to a dashboard. Here, we can edit personal options, one of which is to upload an avatar.
 

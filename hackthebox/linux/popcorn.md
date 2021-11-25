@@ -311,7 +311,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 ​There is alot to unpack here. Let's start by registering a user, logging in and looking around.
 
-![](<../../.gitbook/assets/2 (3) (1).JPG>)
+![](<../../.gitbook/assets/2 (3) (1) (1).JPG>)
 
 Let's copy a PHP reverse shell script to our working directory and modify it with our IP and port.
 
