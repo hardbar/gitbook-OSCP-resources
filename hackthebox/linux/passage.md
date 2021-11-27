@@ -226,7 +226,7 @@ We can upload an image file (png), and we get a success message back. The image 
 
 ![](<../../.gitbook/assets/5 (3) (1).JPG>)
 
-![](<../../.gitbook/assets/6 (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
 ![](<../../.gitbook/assets/7 (3).JPG>)
 
@@ -547,7 +547,7 @@ f669a6f691f98ab0562356c0cd5d5e7dcdc20a07941c86adcfce9af3085fbeca
 
 We'll use [https://crackstation.net/](https://crackstation.net) to crack them, however, we only get two passwords out of the 5:
 
-![](<../../.gitbook/assets/11 (2).JPG>)
+![](<../../.gitbook/assets/11 (2) (1).JPG>)
 
 Looking through the original decoded text, it looks like the password "atlanta1" is for "paul" and the other one is for a user that does not have a linux user account on the box.
 

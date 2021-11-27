@@ -398,7 +398,7 @@ cod=99+UNION+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,@@version
 
 The screenshot below shows the result from the payload in row 3 above. All of the first 6 worked, but row 7 didn't. Since I got returned data, I'm not going to worry about that. I chose row 3 because I can easily search for "price-room" to see the output for future requests, as shown below. BURP also has a handy "Auto-scroll" option which goes directly to the string being searched for. This can be enabled by clicking on the "+" button in the response pane.&#x20;
 
-![](<../../.gitbook/assets/13 (1).JPG>)
+![](<../../.gitbook/assets/13 (1) (1).JPG>)
 
 Now that we know the database is running MariaDB (MySQL variant), we can customize our queries to this specific target. MySQL has a number of built in functions we can use to extract more information:
 
@@ -441,7 +441,7 @@ The query is as follows:
 
 The results:
 
-![](../../.gitbook/assets/15.JPG)
+![](<../../.gitbook/assets/15 (1).JPG>)
 
 Of the tables listed, the one I'm interested in is the "user" table.
 

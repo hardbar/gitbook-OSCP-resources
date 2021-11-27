@@ -376,7 +376,7 @@ Let's see if we can upload our PHP script here. We try the following, none of wh
 
 Next, we try rshell.php.gif, and it works.
 
-![](<../../.gitbook/assets/7 (2) (1).JPG>)
+![](<../../.gitbook/assets/7 (2) (1) (1).JPG>)
 
 Start a netcat listener, and refresh the torrent page.&#x20;
 

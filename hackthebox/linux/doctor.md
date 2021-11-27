@@ -195,7 +195,7 @@ Let's make a note of this and move on.
 
 Next, let's check out the page on port 8089:
 
-![](<../../.gitbook/assets/6 (1) (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1) (1).JPG>)
 
 There are 4 links on the page:
 
@@ -241,7 +241,7 @@ Let's register an account. After creating the account, we get the following mess
 
 Viewing the page source, we see the following comment:
 
-![](<../../.gitbook/assets/9 (2).JPG>)
+![](<../../.gitbook/assets/9 (2) (1).JPG>)
 
 Visiting the /archive route returns a blank page, and if we view the source we see the following:
 
@@ -265,7 +265,7 @@ http://doctors.htb/login?next=%2F [200 OK] Bootstrap[4.0.0], Country[RESERVED][Z
 
 When visiting the IP address in the browser, the server returns web content served by Apache, whereas the site accessed via the domain name returns pages served by python. Looking at wappalyzer, we can also see that the site is using the Flask web framework:
 
-![](../../.gitbook/assets/13.JPG)
+![](<../../.gitbook/assets/13 (1).JPG>)
 
 The following page contains more information about Flask:
 
@@ -293,11 +293,11 @@ Let's confirm if there is a SSTI vulnerability on the http://doctors.htb webapp,
 >
 > {{config}} --> output should contains details about the configuration
 
-![](<../../.gitbook/assets/14 (1).JPG>)
+![](<../../.gitbook/assets/14 (1) (1).JPG>)
 
 We get back the same text, which is what we are expecting. Let's try the next one:
 
-![](<../../.gitbook/assets/15 (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1).JPG>)
 
 That didn't seem to work, we just get back the text we put in instead of the expected result, which is a concatenation of seven sevens: 7777777
 

@@ -199,7 +199,7 @@ We don't get any errors back, which is good. Let's see if we can list the files 
 
 > http://localhost/test.html $(ls /dev/shm)
 
-![](<../../.gitbook/assets/10 (3).JPG>)
+![](<../../.gitbook/assets/10 (3) (1).JPG>)
 
 It worked. Let's start a netcat listener, and then use the command substitution to execute the PHP script as follows:
 
