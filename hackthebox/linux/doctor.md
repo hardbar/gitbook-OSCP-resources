@@ -185,11 +185,11 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 ​There are two URLs to check out. Let's visit the page on port 80 first:
 
-![](<../../.gitbook/assets/2 (4) (1).JPG>)
+![](<../../.gitbook/assets/2 (4) (1) (1).JPG>)
 
 It's a pretty basic webpage, where most of the links on the page are dead. If we look at the page source, we do find an email address:
 
-![](<../../.gitbook/assets/3 (5) (1).JPG>)
+![](<../../.gitbook/assets/3 (5) (1) (1).JPG>)
 
 Let's make a note of this and move on.
 

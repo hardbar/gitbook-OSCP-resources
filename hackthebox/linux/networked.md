@@ -4,7 +4,7 @@ description: 10.10.10.146
 
 # Networked
 
-![](<../../.gitbook/assets/1 (3).JPG>)
+![](<../../.gitbook/assets/1 (3) (1).JPG>)
 
 ## Overview
 

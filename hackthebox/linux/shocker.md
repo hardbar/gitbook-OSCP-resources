@@ -268,7 +268,7 @@ In the repsonse, we can see that the "Content-Type" header is "text/x-sh". A goo
 
 {% embed url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" %}
 
-![](<../../.gitbook/assets/3 (5).JPG>)
+![](<../../.gitbook/assets/3 (5) (1).JPG>)
 
 This explains why the browser asks us to open the file in an external program or save it to disk, because it doesn't recognize the header "text/sh". If we intercept the server response, and change the header to "text/plain" for example, the output would appear in the browser.
 

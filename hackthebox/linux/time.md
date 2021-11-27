@@ -154,7 +154,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Browse the webapp on port 80:
 
-![](<../../.gitbook/assets/2 (4).JPG>)
+![](<../../.gitbook/assets/2 (4) (1).JPG>)
 
 There are two options to select. If we select "Beautify" with an empty text box we get a "null" error:
 
@@ -162,7 +162,7 @@ There are two options to select. If we select "Beautify" with an empty text box 
 
 If we select the "Validate(beta)" option with an empty text box, we get a different error:
 
-![](<../../.gitbook/assets/4 (5).JPG>)
+![](<../../.gitbook/assets/4 (5) (1).JPG>)
 
 > Validation failed: Unhandled Java exception: com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
 

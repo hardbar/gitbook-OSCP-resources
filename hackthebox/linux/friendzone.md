@@ -337,7 +337,7 @@ Let's investigate the parameters on the dashboard page:
 
 Let's try adding the default parameters as mentioned on the page:
 
-![](<../../.gitbook/assets/5 (1).JPG>)
+![](<../../.gitbook/assets/5 (1) (1).JPG>)
 
 We get a page back with the image, a.jpg, and a timestamp. What happens if we replace "timestamp" with "login", which is one of the other PHP files found by gobuster? Let's try it:
 
