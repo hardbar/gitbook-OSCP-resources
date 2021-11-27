@@ -150,7 +150,7 @@ The page at [http://10.10.10.75/](http://10.10.10.75) does not have much, howeve
 
 ![](<../../.gitbook/assets/3 (5).JPG>)
 
-![](<../../.gitbook/assets/4 (5).JPG>)
+![](<../../.gitbook/assets/4 (5) (1).JPG>)
 
 At this stage we rerun gobuster (see output in the gobuster section above) and find some interesting files, including "admin.php".
 
@@ -174,7 +174,7 @@ Let's explore the other directories found by gobuster:
 
 ![](<../../.gitbook/assets/7 (2).JPG>)
 
-![](<../../.gitbook/assets/8 (3).JPG>)
+![](<../../.gitbook/assets/8 (3) (1).JPG>)
 
 ![](<../../.gitbook/assets/9 (2).JPG>)
 
@@ -231,7 +231,7 @@ I very much dislike CTF boxes that require password guessing in order to progres
 
 Using the combinations above, we are eventually able to login as "admin:nibbles".
 
-![](<../../.gitbook/assets/11 (2).JPG>)
+![](<../../.gitbook/assets/11 (2) (1).JPG>)
 
 ## CVE: 2015-6967
 

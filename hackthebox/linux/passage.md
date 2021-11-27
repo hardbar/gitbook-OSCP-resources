@@ -228,7 +228,7 @@ We can upload an image file (png), and we get a success message back. The image 
 
 ![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
-![](<../../.gitbook/assets/7 (3).JPG>)
+![](<../../.gitbook/assets/7 (3) (1).JPG>)
 
 The uploads directory already contains two PHP files. They do not appear to do anything, however, this confirms that we should be able to upload a PHP file as well.
 
@@ -238,7 +238,7 @@ The uploads directory already contains two PHP files. They do not appear to do a
 
 Let's copy a PHP reverse shell script to our working directory and modify it with our IP and port. When we try and upload our file, rev.php, we get an error message:
 
-![](<../../.gitbook/assets/9 (3).JPG>)
+![](<../../.gitbook/assets/9 (3) (1).JPG>)
 
 We'll add the GIF magic byte to the top of the file as shown below in order to try and bypass the filter​ and leave the filename as rev.php. If it still doesn't work, we can try rename the file as well, however, in this case it does work:
 
@@ -547,7 +547,7 @@ f669a6f691f98ab0562356c0cd5d5e7dcdc20a07941c86adcfce9af3085fbeca
 
 We'll use [https://crackstation.net/](https://crackstation.net) to crack them, however, we only get two passwords out of the 5:
 
-![](<../../.gitbook/assets/11 (2) (1).JPG>)
+![](<../../.gitbook/assets/11 (2) (1) (1).JPG>)
 
 Looking through the original decoded text, it looks like the password "atlanta1" is for "paul" and the other one is for a user that does not have a linux user account on the box.
 

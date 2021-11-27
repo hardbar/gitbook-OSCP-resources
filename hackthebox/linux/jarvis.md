@@ -4,7 +4,7 @@ description: 10.10.10.143
 
 # Jarvis
 
-![](<../../.gitbook/assets/1 (5) (1) (1).JPG>)
+![](<../../.gitbook/assets/1 (5) (1) (1) (1).JPG>)
 
 ## Overview
 
@@ -256,7 +256,7 @@ Most of the links don't work, but the link to the rooms page and the dining & ba
 
 There is also the "phpmyadmin" page, which requires some credentials. We may need to come back to this later as attempts to use basic credentials here doesn't work.
 
-![](<../../.gitbook/assets/3 (3) (1) (1).JPG>)
+![](<../../.gitbook/assets/3 (3) (1) (1) (1).JPG>)
 
 The [http://10.10.10.143/phpmyadmin/ChangeLog](http://10.10.10.143/phpmyadmin/ChangeLog) confirms that the phpmyadmin version is 4.8.0 (2018-04-07), which we should also make a note of.
 
@@ -282,7 +282,7 @@ We get a response back from the server with a "Content-Length: 6204" header, amo
 
 This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect value, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
 
-![](<../../.gitbook/assets/10 (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/10 (1) (1) (1) (1).JPG>)
 
 As we can see, we get a response back with a different content length. This is the second part of our baseline. Going forward, we can compare our results to this set or pair of queries, which will help us to determine how this code is working under the hood.
 
@@ -441,7 +441,7 @@ The query is as follows:
 
 The results:
 
-![](<../../.gitbook/assets/15 (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1).JPG>)
 
 Of the tables listed, the one I'm interested in is the "user" table.
 

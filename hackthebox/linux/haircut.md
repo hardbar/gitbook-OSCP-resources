@@ -4,7 +4,7 @@ description: 10.10.10.24
 
 # Haircut
 
-![](<../../.gitbook/assets/1 (5).JPG>)
+![](<../../.gitbook/assets/1 (5) (1).JPG>)
 
 ## Overview
 
@@ -155,7 +155,7 @@ We get back the contents of the /etc/passwd file. Let's see if we can view the c
 
 > file:///var/www/html/exposed.php
 
-![](<../../.gitbook/assets/7 (3) (1).JPG>)
+![](<../../.gitbook/assets/7 (3) (1) (1).JPG>)
 
 If we right click and view page source for the page above, which displays the code in a more human readble format:
 

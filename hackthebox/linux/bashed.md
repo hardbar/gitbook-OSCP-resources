@@ -203,7 +203,7 @@ Ncat: Listening on 0.0.0.0:9999
 
 Back in the browser, let's navigate to /tmp, download the shell script, change permissions on it if necessary, and then run it:
 
-![](<../../.gitbook/assets/6 (2).JPG>)
+![](<../../.gitbook/assets/6 (2) (1).JPG>)
 
 In our netcat listener, we get a shell as "www-data":
 

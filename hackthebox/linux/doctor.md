@@ -237,7 +237,7 @@ Let's move on for now. If we visit the page at http://doctors.htb, we find a log
 
 Let's register an account. After creating the account, we get the following message, and it logs us in and takes us to the home page.
 
-![](<../../.gitbook/assets/5 (2).JPG>)
+![](<../../.gitbook/assets/5 (2) (1).JPG>)
 
 Viewing the page source, we see the following comment:
 
@@ -245,7 +245,7 @@ Viewing the page source, we see the following comment:
 
 Visiting the /archive route returns a blank page, and if we view the source we see the following:
 
-![](<../../.gitbook/assets/10 (1).JPG>)
+![](<../../.gitbook/assets/10 (1) (1).JPG>)
 
 Going back to the home page, there is an option to post a message. Before doing so, we'll start BURP and configure the browser to use the proxy. Next we'll turn on intercept in BURP, post a message and then send the request to the repeater and click Go. We are redirected back to the home page where the message is now shown. We notice in the headers of th eresponse that the server is running a python web service:
 
@@ -297,7 +297,7 @@ Let's confirm if there is a SSTI vulnerability on the http://doctors.htb webapp,
 
 We get back the same text, which is what we are expecting. Let's try the next one:
 
-![](<../../.gitbook/assets/15 (1) (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1) (1).JPG>)
 
 That didn't seem to work, we just get back the text we put in instead of the expected result, which is a concatenation of seven sevens: 7777777
 

@@ -4,7 +4,7 @@ description: 10.10.10.6
 
 # Popcorn
 
-![](<../../.gitbook/assets/1 (5) (1).JPG>)
+![](<../../.gitbook/assets/1 (5) (1) (1).JPG>)
 
 ## Overview
 
@@ -334,7 +334,7 @@ rshell.php.gif: GIF image data, version 87a, 15370 x 28735
 
 Next, go to the upload page and attempt to upload the script, which we have named "rshell.php". We get an error message:&#x20;
 
-![](<../../.gitbook/assets/3 (3) (1).JPG>)
+![](<../../.gitbook/assets/3 (3) (1) (1).JPG>)
 
 We try the following filenames to try and bypass the upload restrictions, however, none of them work:
 
@@ -362,9 +362,9 @@ Once the torrent file is downloaded, we can upload it to the target. Information
 
 Scrolling down on this page, we find an option to edit the torrent. Clicking on the "Edit this torrent" button opens a new window:
 
-![](<../../.gitbook/assets/5 (2) (1) (1).JPG>)
+![](<../../.gitbook/assets/5 (2) (1) (1) (1).JPG>)
 
-![](<../../.gitbook/assets/6 (2) (1) (1).JPG>)
+![](<../../.gitbook/assets/6 (2) (1) (1) (1).JPG>)
 
 Let's see if we can upload our PHP script here. We try the following, none of which works:
 

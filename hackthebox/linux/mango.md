@@ -347,11 +347,11 @@ Let's test the login parameters with the following basic payloads:
 
 > username\[$ne]=wronguser\&password\[$ne]=wrongpwd\&login=login
 
-![](<../../.gitbook/assets/5 (2) (1).JPG>)
+![](<../../.gitbook/assets/5 (2) (1) (1).JPG>)
 
 We get a response message with a redirect to home.php. We have just bypassed the login page, and after being redirected, we end up at the page shown below:
 
-![](<../../.gitbook/assets/6 (2) (1).JPG>)
+![](<../../.gitbook/assets/6 (2) (1) (1).JPG>)
 
 Ok, now what? We review the page source but there is nothing of interest. However, since we know there is a NoSQLi in the login form, let's attempt to extract data from the database using the vulnerable form.
 
