@@ -346,6 +346,8 @@ Before we move on to those, lets check the exploit database results first.
 
 ## Elastix
 
+### EDB-ID: 37637
+
 Looking at the output from searchsploit, let's check out the first entry:
 
 {% embed url="https://www.exploit-db.com/exploits/37637" %}
