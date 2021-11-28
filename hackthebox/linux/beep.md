@@ -10,8 +10,14 @@ description: 10.10.10.7
 
 The following exploits are covered for obtaining the flags on this target: ​
 
+Method 1 (detailed in the walkthrough below):
+
 * User - Elastix 2.2.0 - 'graph.php' Local File Inclusion (EDB-ID: 37637), allows us to view the settings of components of the Asterisk Management Portal. Login to the Elastix portal to find alot of info including the ext number that is active. Using the ext number, we're able to take advantage of CVE: 2012-4869 to get RCE and a shell as "asterisk".
 * Root - User "asterisk" can run sudo on multiple commands including chmod, chown, nmap etc.
+
+Mthod 2
+
+
 
 ## Enumeration:
 
