@@ -149,13 +149,13 @@ Let's see if we can read local files:
 
 > file:///etc/passwd
 
-![](<../../.gitbook/assets/5 (3) (1) (1).JPG>)
+![](<../../.gitbook/assets/5 (3) (1) (1) (1).JPG>)
 
 We get back the contents of the /etc/passwd file. Let's see if we can view the contents of the exposed.php file:
 
 > file:///var/www/html/exposed.php
 
-![](<../../.gitbook/assets/7 (3) (1) (1).JPG>)
+![](<../../.gitbook/assets/7 (3) (1) (1) (1).JPG>)
 
 If we right click and view page source for the page above, which displays the code in a more human readble format:
 

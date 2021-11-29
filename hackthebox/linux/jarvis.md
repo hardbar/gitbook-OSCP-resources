@@ -252,7 +252,7 @@ Let's visit the pages and look around.
 
 Most of the links don't work, but the link to the rooms page and the dining & bar page do work. On the rooms page, clicking on "Book" on any of the rooms takes us to another page, which is using the room we clicked on as input to a variable "cod", so this is worth taking note of as we could test this for sqli. The "order" options on the dining & bar page do not work.
 
-![](<../../.gitbook/assets/4 (2) (1).JPG>)
+![](<../../.gitbook/assets/4 (2) (1) (1).JPG>)
 
 There is also the "phpmyadmin" page, which requires some credentials. We may need to come back to this later as attempts to use basic credentials here doesn't work.
 
@@ -278,7 +278,7 @@ Start BURP, configure the browser to use BURP, and start browsing. After clickin
 
 We get a response back from the server with a "Content-Length: 6204" header, amongst others, as shown below:
 
-![](<../../.gitbook/assets/6 (3) (1).JPG>)
+![](<../../.gitbook/assets/6 (3) (1) (1).JPG>)
 
 This is the first part of our baseline, a valid query with a valid response. Next, let's see what response we get when we enter an incorrect value, for example [http://10.10.10.143/room.php?cod=](http://10.10.10.143/room.php?cod=2)**99**
 

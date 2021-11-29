@@ -4,7 +4,7 @@ description: 10.10.10.56
 
 # Shocker
 
-![](<../../.gitbook/assets/1 (8).JPG>)
+![](<../../.gitbook/assets/1 (8) (1).JPG>)
 
 ## Overview
 

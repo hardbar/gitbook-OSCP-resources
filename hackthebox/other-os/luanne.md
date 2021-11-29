@@ -251,7 +251,7 @@ For now, let's make a note of these and move on.
 
 We also found the /weather/forecast route on the port 80 website, so let's check that out:
 
-![](<../../.gitbook/assets/2 (5) (1).JPG>)
+![](<../../.gitbook/assets/2 (5) (1) (1).JPG>)
 
 Using the information from the page above, let's try [http://10.10.10.218/weather/forecast?city=list](http://10.10.10.218/weather/forecast?city=list)
 
@@ -263,11 +263,11 @@ We get a list of cities. If we enter any of the listed cities, we get a weather 
 
 If we enter nothing, we get an error message:
 
-![](<../../.gitbook/assets/5 (3).JPG>)
+![](<../../.gitbook/assets/5 (3) (1).JPG>)
 
 If we enter a special character suck as a single qoute, we get an interesting response:
 
-![](<../../.gitbook/assets/6 (3).JPG>)
+![](<../../.gitbook/assets/6 (3) (1).JPG>)
 
 The target is using the Lua langauge on the backend.
 

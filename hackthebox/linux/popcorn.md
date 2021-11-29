@@ -358,7 +358,7 @@ Let's try and upload an actual torrent file. There are many places to get a torr
 
 Once the torrent file is downloaded, we can upload it to the target. Information is gathered from the torrent file and populated into a page which contains all the details of the target file.
 
-![](<../../.gitbook/assets/4 (2).JPG>)
+![](<../../.gitbook/assets/4 (2) (1).JPG>)
 
 Scrolling down on this page, we find an option to edit the torrent. Clicking on the "Edit this torrent" button opens a new window:
 
@@ -396,7 +396,7 @@ That didn't work. Let's try the following:
 
 That seems to have worked. Let's check the [http://10.10.10.6/torrent/upload/](http://10.10.10.6/torrent/upload/?C=N;O=A) page:
 
-![](<../../.gitbook/assets/10 (2) (1).JPG>)
+![](<../../.gitbook/assets/10 (2) (1) (1).JPG>)
 
 All we need to do now is make sure we have a netcat listener running before clicking on the 00b21cf92b5c30cff62a126154c23571979a4cab.php link to execute the reverse shell code in the script.&#x20;
 

@@ -138,7 +138,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 The home page:
 
-![](<../../.gitbook/assets/2 (5).JPG>)
+![](<../../.gitbook/assets/2 (5) (1).JPG>)
 
 Going into the "phpbash" post, we see the following page:
 

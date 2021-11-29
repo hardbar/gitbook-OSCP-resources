@@ -1,3 +1,3 @@
 # Introduction
 
-This is a collation of my notes taken during preparation for the OSCP exam.
+This blog is for educational purposes only.

@@ -224,11 +224,11 @@ There is a register option, so we register an account and login, after which we 
 
 We can upload an image file (png), and we get a success message back. The image appears on the "Personal options" page, and if we "View image info", we can see that it is stored in [http://passage.htb/CuteNews/uploads/](http://passage.htb/CuteNews/uploads/) which is accessible.
 
-![](<../../.gitbook/assets/5 (3) (1).JPG>)
+![](<../../.gitbook/assets/5 (3) (1) (1).JPG>)
 
 ![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
-![](<../../.gitbook/assets/7 (3) (1).JPG>)
+![](<../../.gitbook/assets/7 (3) (1) (1).JPG>)
 
 The uploads directory already contains two PHP files. They do not appear to do anything, however, this confirms that we should be able to upload a PHP file as well.
 
@@ -252,7 +252,7 @@ $VERSION = "1.0";
 
 ```
 
-![](<../../.gitbook/assets/10 (2).JPG>)
+![](<../../.gitbook/assets/10 (2) (1).JPG>)
 
 Let's start a netcat listener, and click on our uploaded file. We get a shell as the user "www-data", and upgrade it using python3.
 

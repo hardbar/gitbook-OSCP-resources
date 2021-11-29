@@ -352,7 +352,7 @@ There are quite a few results here. We'll come back to this later.
 
 Next, we browse to the page at [https://10.10.10.7:10000/](https://10.10.10.7:10000), where we get yet another login form, this time for "Webmin".
 
-![](<../../.gitbook/assets/7 (3).JPG>)
+![](<../../.gitbook/assets/7 (3) (1).JPG>)
 
 A search for default creds reveals that by default "Webmin" uses the root account, and so the login attempts with basic default creds don't work here.
 
