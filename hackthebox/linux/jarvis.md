@@ -295,7 +295,7 @@ Another step that I think is very important here is to try and understand what i
 * That adds up to 6 pieces of returned data being displayed back to the requestor, therefore we can assume that the table in the database on the server containing the data has at least 6 columns&#x20;
 * It's important to realise that there may be other data returned from the database that is not being displayed, or some data that is just not being returned, but this gives us a good idea of what might be happening in the background and what the table structure may look like
 * Based on the above, we can make an educated guess at the basic structure of the SQL query:
-  * SELECT image, star rating, room type, cost, description, room id FROM _table\_name _WHERE cod=1;
+  * SELECT image, star rating, room type, cost, description, room id FROM _table\_name_ WHERE cod=1;
 
 {% hint style="info" %}
 NOTE: It's helpful to create a table to keep track of what has been tested and the results of those tests. In this case, we are using the content length, but it could be whatever makes the logic work within a specific test scenario and should therefore be adapted as applicable. Scroll down to see the table format being used here.
@@ -341,7 +341,7 @@ http://10.10.10.143/room.php?cod=1 AND 1=2   --> expected response size = 5916
 
 This works, and we get the expected responses back. Thus far, we have confirmed that there is a vulnerable injection point, and we have confirmed that we can manipulate the query to get back expected results. Our table at this stage is as follows:
 
-![](<../../.gitbook/assets/11 (1) (1).JPG>)
+![](<../../.gitbook/assets/11 (1) (1) (1).JPG>)
 
 ### SQL Injection - Data Extraction
 
@@ -398,7 +398,7 @@ cod=99+UNION+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,@@version
 
 The screenshot below shows the result from the payload in row 3 above. All of the first 6 worked, but row 7 didn't. Since I got returned data, I'm not going to worry about that. I chose row 3 because I can easily search for "price-room" to see the output for future requests, as shown below. BURP also has a handy "Auto-scroll" option which goes directly to the string being searched for. This can be enabled by clicking on the "+" button in the response pane.&#x20;
 
-![](<../../.gitbook/assets/13 (1) (1).JPG>)
+![](<../../.gitbook/assets/13 (1) (1) (1).JPG>)
 
 Now that we know the database is running MariaDB (MySQL variant), we can customize our queries to this specific target. MySQL has a number of built in functions we can use to extract more information:
 
@@ -441,7 +441,7 @@ The query is as follows:
 
 The results:
 
-![](<../../.gitbook/assets/15 (1) (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1) (1).JPG>)
 
 Of the tables listed, the one I'm interested in is the "user" table.
 
@@ -453,7 +453,7 @@ The query is as follows:
 
 The results:
 
-![](../../.gitbook/assets/16.JPG)
+![](<../../.gitbook/assets/16 (1).JPG>)
 
 #### Data Extraction
 
@@ -463,7 +463,7 @@ The query to extract data from the "User" and "Password" fields is as follows:
 
 The results:
 
-![](<../../.gitbook/assets/17 (1).JPG>)
+![](<../../.gitbook/assets/17 (1) (1).JPG>)
 
 Nice, we have extracted some user credentials, albeit a username and a hashed password.
 
@@ -475,7 +475,7 @@ We can use an online hash cracker to easily crack this hash, for example [https:
 
 We now have a set of credentials, and we can use it to successfully login to the [http://10.10.10.143/phpmyadmin](http://10.10.10.143/phpmyadmin/) page.
 
-![](<../../.gitbook/assets/18 (1).JPG>)
+![](<../../.gitbook/assets/18 (1) (1).JPG>)
 
 ### Phpmyadmin
 
@@ -485,7 +485,7 @@ We can check the user privileges for "DBadmin" as follows:
 select * from mysql.user where user = substring_index(user(), '@', 1);
 ```
 
-![](../../.gitbook/assets/20.JPG)
+![](<../../.gitbook/assets/20 (1).JPG>)
 
 One of the privileges the user has is "File\_priv=Y". This means that we should be able to read and write files to the system. Let's test if we can read a file first:
 
@@ -493,7 +493,7 @@ One of the privileges the user has is "File\_priv=Y". This means that we should 
 select load_file('/etc/passwd');
 ```
 
-![](../../.gitbook/assets/21.JPG)
+![](<../../.gitbook/assets/21 (1).JPG>)
 
 Nice. If we can write a file to the disk, we should be able to get code execution. Before doing that though, let's confirm the webroot directory by reading the index.php file from it:
 

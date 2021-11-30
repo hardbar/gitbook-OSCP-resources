@@ -265,7 +265,7 @@ http://doctors.htb/login?next=%2F [200 OK] Bootstrap[4.0.0], Country[RESERVED][Z
 
 When visiting the IP address in the browser, the server returns web content served by Apache, whereas the site accessed via the domain name returns pages served by python. Looking at wappalyzer, we can also see that the site is using the Flask web framework:
 
-![](<../../.gitbook/assets/13 (1).JPG>)
+![](<../../.gitbook/assets/13 (1) (1).JPG>)
 
 The following page contains more information about Flask:
 
@@ -293,17 +293,17 @@ Let's confirm if there is a SSTI vulnerability on the http://doctors.htb webapp,
 >
 > {{config}} --> output should contains details about the configuration
 
-![](<../../.gitbook/assets/14 (1) (1).JPG>)
+![](<../../.gitbook/assets/14 (1) (1) (1).JPG>)
 
 We get back the same text, which is what we are expecting. Let's try the next one:
 
-![](<../../.gitbook/assets/15 (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1) (1) (1).JPG>)
 
 That didn't seem to work, we just get back the text we put in instead of the expected result, which is a concatenation of seven sevens: 7777777
 
 Let's try the third test:
 
-![](<../../.gitbook/assets/16 (1).JPG>)
+![](<../../.gitbook/assets/16 (1) (1).JPG>)
 
 Once again, we get back what we put in, and so it looks like it's not vulnerable to SSTI.
 
@@ -317,7 +317,7 @@ Looking at the requests in the BURP HTTP history tab, we see the following:
 
 Let's go back to the /archive page again and poke around there a bit more. Visit the page in the browser, and back in BURP, we see the following:
 
-![](../../.gitbook/assets/17.JPG)
+![](<../../.gitbook/assets/17 (1).JPG>)
 
 It's the output from our last test "{{config}}, which confirms that the webapp is indeed vulnerable to SSTI.&#x20;
 
@@ -337,7 +337,7 @@ Let's test for RCE by posting the following payload:
 
 After posting it, visit the /archive page and view it in the HTTP history tab in BURP:
 
-![](../../.gitbook/assets/18.JPG)
+![](<../../.gitbook/assets/18 (1).JPG>)
 
 That works. Let's start a listener and post the following payload to get a reverse shell:
 
@@ -568,7 +568,7 @@ We know from our earlier enumeration and research that if we exploit the splunk 
 
 Let's try the creds "shaun:Guitar123" and see if we can login to the [https://10.10.10.209:8089/services](https://10.10.10.209:8089/services) page.
 
-![](<../../.gitbook/assets/19 (1).JPG>)
+![](<../../.gitbook/assets/19 (1) (1).JPG>)
 
 Nice, we're in. Now, we can use the tool PySplunkWhisper2, which is mentioned in the article [https://eapolsniper.github.io/2020/08/14/Abusing-Splunk-Forwarders-For-RCE-And-Persistence/](https://eapolsniper.github.io/2020/08/14/Abusing-Splunk-Forwarders-For-RCE-And-Persistence/), to get a reverse shell as root. The tool can be found here:
 

@@ -270,7 +270,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Visiting the main page on port 443, we see a login form for "Elastix".
 
-![](<../../.gitbook/assets/2 (6).JPG>)
+![](<../../.gitbook/assets/2 (6) (1).JPG>)
 
 A google search for "elastix default login" finds the following page, however, none of these worked:
 
@@ -457,7 +457,7 @@ Let's try and upload an unmodified PHP reverse shell ( we used one from Kali und
 
 ![](<../../.gitbook/assets/14 (2).JPG>)
 
-![](<../../.gitbook/assets/15 (1).JPG>)
+![](<../../.gitbook/assets/15 (1) (1).JPG>)
 
 After trying a few times, we could not get this to work, and so we decided to move on to the next exploit.
 

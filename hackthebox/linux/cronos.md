@@ -192,7 +192,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Let's check out the website at [http://www.cronos.htb/](http://www.cronos.htb)
 
-![](<../../.gitbook/assets/3 (6).JPG>)
+![](<../../.gitbook/assets/3 (7).JPG>)
 
 Let's check out the website at [http://admin.cronos.htb/](http://admin.cronos.htb)
 
@@ -220,7 +220,7 @@ Let's test the login form for SQLi:
 >
 > admin') or '1'='1-- -
 
-![](<../../.gitbook/assets/9 (4).JPG>)
+![](<../../.gitbook/assets/9 (5).JPG>)
 
 Using the first entry above, we bypass the login form, to find a network tool.
 

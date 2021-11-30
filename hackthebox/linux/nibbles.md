@@ -182,7 +182,7 @@ We now know the correct username is indeed "admin".
 
 Looking at the page at [http://10.10.10.75/nibbleblog/update.php](http://10.10.10.75/nibbleblog/update.php), we can also see the version running for this CMS:
 
-![](<../../.gitbook/assets/10 (3).JPG>)
+![](<../../.gitbook/assets/10 (3) (1).JPG>)
 
 ## Searchsploit
 
@@ -241,15 +241,15 @@ According to the entry in the exploit database (EDB-ID: 38489), the vulnerabilit
 
 Navigate to the "Plugins" page, and click on "Configure" under the "My image" section.
 
-![](<../../.gitbook/assets/12 (2).JPG>)
+![](<../../.gitbook/assets/12 (2) (1).JPG>)
 
 &#x20;Click on "Browse" to select a PHP webshell of your choosing (we used the reverse-shell.php script in /usr/share/webshells/php on Kali).
 
-![](../../.gitbook/assets/13.JPG)
+![](<../../.gitbook/assets/13 (1).JPG>)
 
 Finally, click "Save changes". After saving, we get some errors, however, none of them confirm whether the file was uploaded or not.
 
-![](<../../.gitbook/assets/14 (1).JPG>)
+![](<../../.gitbook/assets/14 (1) (1).JPG>)
 
 To find the file, we'll need to go back to the /content/ directory we found earlier. There is a "plugins" directory at [http://10.10.10.75/nibbleblog/content/private/plugins/my\_image/](http://10.10.10.75/nibbleblog/content/private/plugins/my\_image/) whch contains the uploaded PHP file. Note that the application renamed it to image.php.
 

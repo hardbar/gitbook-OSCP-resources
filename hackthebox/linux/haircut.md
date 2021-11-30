@@ -169,7 +169,7 @@ Let's try to use command substitution:
 
 > http://localhost/test.html $(id)
 
-![](<../../.gitbook/assets/6 (4).JPG>)
+![](<../../.gitbook/assets/6 (4) (1).JPG>)
 
 We get back the output mixed in with other output from the curl command. This is great, because we can potentially execute some code if we can upload something to the target. For this, I'll use PHP because it is not one of the disallowed commands. For more information about PHP on the command line, check out the following page:
 
@@ -199,7 +199,7 @@ We don't get any errors back, which is good. Let's see if we can list the files 
 
 > http://localhost/test.html $(ls /dev/shm)
 
-![](<../../.gitbook/assets/10 (3) (1).JPG>)
+![](<../../.gitbook/assets/10 (3) (1) (1).JPG>)
 
 It worked. Let's start a netcat listener, and then use the command substitution to execute the PHP script as follows:
 
@@ -392,7 +392,7 @@ For more technical information regarding this vulnerability, check out the follo
 
 ## Privilege Escalation
 
-The target system is a x86\_64 architecture, which we confirmed with our system checks. For that reason, we're going to compile the two files in the exploit script on our attacker system, which is also a_ x_86\_64 box.
+The target system is a x86\_64 architecture, which we confirmed with our system checks. For that reason, we're going to compile the two files in the exploit script on our attacker system, which is also a _x_86\_64 box.
 
 First, let's create the two C files as follows:
 

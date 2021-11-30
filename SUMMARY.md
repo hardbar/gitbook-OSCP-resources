@@ -24,6 +24,7 @@
     * [Nibbles](hackthebox/linux/nibbles.md)
     * [Beep](hackthebox/linux/beep.md)
     * [Cronos](hackthebox/linux/cronos.md)
+    * [Nineveh](hackthebox/linux/nineveh.md)
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Devel](hackthebox/windows/devel.md)

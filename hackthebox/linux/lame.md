@@ -263,7 +263,7 @@ We can also try and gather more information from the target using rpcclient, whi
 rpcclient $>
 ```
 
-This tool can provide us with some useful information. For example, we can try and get a list of users with the **querydispinfo **command. This command can sometimes reveal details that should not be seen via anonymous access, including passwords stored in the description field. Another useful command to get a list of users is **enumdomusers, **which gives a more concise lsit of users and their RID numbers. For more command options type **help **or visit the link above.
+This tool can provide us with some useful information. For example, we can try and get a list of users with the **querydispinfo** command. This command can sometimes reveal details that should not be seen via anonymous access, including passwords stored in the description field. Another useful command to get a list of users is **enumdomusers,** which gives a more concise lsit of users and their RID numbers. For more command options type **help** or visit the link above.
 
 ```
 rpcclient $> querydispinfo

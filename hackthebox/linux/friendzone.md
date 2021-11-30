@@ -4,7 +4,7 @@ description: 10.10.10.123
 
 # FriendZone
 
-![](<../../.gitbook/assets/1 (4).JPG>)
+![](<../../.gitbook/assets/1 (4) (1).JPG>)
 
 ## Overview
 
@@ -376,7 +376,7 @@ Let's try to reach the "upload.php" file using file traversal in the pagename pa
 
 [https://administrator1.friendzone.red/dashboard.php?image\_id=a.jpg\&pagename=../uploads/upload](https://administrator1.friendzone.red/dashboard.php?image\_id=a.jpg\&pagename=../uploads/upload)
 
-![](<../../.gitbook/assets/8 (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/8 (1) (1) (1) (1).JPG>)
 
 We get back the same string. Taking this one step further, let's see if we can get the source code using a PHP wrapper. For information on PHP wrappers check out the following page:
 

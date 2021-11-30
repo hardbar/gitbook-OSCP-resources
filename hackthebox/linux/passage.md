@@ -232,7 +232,7 @@ We can upload an image file (png), and we get a success message back. The image 
 
 The uploads directory already contains two PHP files. They do not appear to do anything, however, this confirms that we should be able to upload a PHP file as well.
 
-![](<../../.gitbook/assets/8 (1).JPG>)
+![](<../../.gitbook/assets/8 (1) (1).JPG>)
 
 ## Gaining Access
 
