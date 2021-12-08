@@ -43,4 +43,5 @@
 * [Privilege Escalation](privilege-escalation/README.md)
   * [Linux](privilege-escalation/linux.md)
   * [Windows](privilege-escalation/windows.md)
-* [How To's](how-tos.md)
+* [How To's](how-tos/README.md)
+  * [Route Windows through Kali VPN](how-tos/route-windows-through-kali-vpn.md)
