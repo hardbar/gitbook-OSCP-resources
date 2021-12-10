@@ -4,7 +4,7 @@ description: 10.10.10.214
 
 # Time
 
-![](<../../.gitbook/assets/1 (7).JPG>)
+![](<../../.gitbook/assets/1 (7) (1).JPG>)
 
 ## Overview
 

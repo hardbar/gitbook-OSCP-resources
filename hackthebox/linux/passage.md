@@ -204,7 +204,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Browsing to the home page, we see the post that refers to "fail2ban" being implemented on the site:
 
-![](<../../.gitbook/assets/2 (2).JPG>)
+![](<../../.gitbook/assets/2 (2) (1).JPG>)
 
 Let's add an entry for "passage.htb" to our /etc/hosts file and visit it in the browser. The site appears to be the same.
 
@@ -226,7 +226,7 @@ We can upload an image file (png), and we get a success message back. The image 
 
 ![](<../../.gitbook/assets/5 (3) (1) (1).JPG>)
 
-![](<../../.gitbook/assets/6 (1) (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1) (1).JPG>)
 
 ![](<../../.gitbook/assets/7 (3) (1) (1).JPG>)
 

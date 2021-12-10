@@ -198,7 +198,7 @@ The site at [http://10.10.10.43/](http://10.10.10.43) is a static html page with
 
 There is also a "phpinfo" page on port 80:
 
-![](<../../.gitbook/assets/4 (6).JPG>)
+![](<../../.gitbook/assets/4 (6) (1).JPG>)
 
 The /department route is another login page:
 
@@ -210,7 +210,7 @@ In the page source we find the following comment:
 
 The site at [https://10.10.10.43/](https://10.10.10.43) contains only an image, ninevehForAll.png:
 
-![](<../../.gitbook/assets/3 (6).JPG>)
+![](<../../.gitbook/assets/3 (6) (1).JPG>)
 
 Save the image to our attacker box which will allow us to examine it with "exiftool".
 

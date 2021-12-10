@@ -262,7 +262,7 @@ in the server error log.</p>
 
 We get the same 500 server error. To see what is happening here, we'll send the requests through BURP. Let's visit the page at [http://10.10.10.56/cgi-bin/user.sh](http://10.10.10.56/cgi-bin/user.sh) in a browser configured to use BURP as a proxy. We are prompted to open or save a file, so let's save it. Next, let's find the request in BURP and send it to repeater, and click Go.
 
-![](<../../.gitbook/assets/2 (3).JPG>)
+![](<../../.gitbook/assets/2 (3) (1).JPG>)
 
 In the repsonse, we can see that the "Content-Type" header is "text/x-sh". A google search for this finds the following page, which confirms that the header type should be "application/sh" for a bash script, as shown below:
 

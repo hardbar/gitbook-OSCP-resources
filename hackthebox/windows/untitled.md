@@ -4,12 +4,7 @@ description: 10.10.10.4
 
 # Legacy
 
-![](<../../.gitbook/assets/1 (1).JPG>)
-
-| **Machine Name** | Legacy  |
-| ---------------- | ------- |
-| Difficulty       | Easy    |
-| Type             | Windows |
+![](<../../.gitbook/assets/2 (2).JPG>)
 
 ## Overview
 

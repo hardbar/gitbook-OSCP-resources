@@ -4,7 +4,7 @@ description: 10.10.10.162
 
 # Mango
 
-![](<../../.gitbook/assets/1 (7) (1) (1).JPG>)
+![](<../../.gitbook/assets/1 (7) (1) (1) (1).JPG>)
 
 ## Overview
 
@@ -277,7 +277,7 @@ DOWNLOADED: 4612 - FOUND: 1
 
 We can visit the sites we have found and look around. The two HTTPS sites look the same, as shown below:
 
-![](<../../.gitbook/assets/2 (3) (1).JPG>)
+![](<../../.gitbook/assets/2 (3) (1) (1).JPG>)
 
 The page at http://mango.htb is forbidden, and the login page at http://staging-order.mango.htb is shown below:
 

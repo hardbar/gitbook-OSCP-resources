@@ -127,7 +127,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 Let's visit the exposed.php page. Clicking on the "Go" button returns some information pertaining to the example site listed.
 
-![](<../../.gitbook/assets/2 (2) (1).JPG>)
+![](<../../.gitbook/assets/2 (2) (1) (1).JPG>)
 
 If we clear the form field and hit the "Go" button, we get an error confirming that this page is using the "curl" program.
 

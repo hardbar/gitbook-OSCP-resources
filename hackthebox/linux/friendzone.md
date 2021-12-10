@@ -337,11 +337,11 @@ Let's investigate the parameters on the dashboard page:
 
 Let's try adding the default parameters as mentioned on the page:
 
-![](<../../.gitbook/assets/5 (1) (1).JPG>)
+![](<../../.gitbook/assets/5 (1) (1) (1).JPG>)
 
 We get a page back with the image, a.jpg, and a timestamp. What happens if we replace "timestamp" with "login", which is one of the other PHP files found by gobuster? Let's try it:
 
-![](<../../.gitbook/assets/6 (1) (1) (1) (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1) (1) (1) (1).JPG>)
 
 Now we are getting an error. Probing further, let's try "uploads". We don't get any error this time, but this is because the uploads.php file is not in the same directory that we are currently in. We could try and use directory traversal techniques to see if we can load other PHP files.
 

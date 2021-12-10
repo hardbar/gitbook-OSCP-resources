@@ -154,11 +154,11 @@ The page at [http://10.10.10.75/](http://10.10.10.75) does not have much, howeve
 
 At this stage we rerun gobuster (see output in the gobuster section above) and find some interesting files, including "admin.php".
 
-![](<../../.gitbook/assets/5 (1).JPG>)
+![](<../../.gitbook/assets/5 (1) (1).JPG>)
 
 After trying the basic default creds such as "admin:admin" and a few others without success, we decide to try brute force the login with hydra, however, it isn't long before we get banned:
 
-![](<../../.gitbook/assets/6 (1).JPG>)
+![](<../../.gitbook/assets/6 (1) (1).JPG>)
 
 Let's explore the other directories found by gobuster:
 
@@ -172,7 +172,7 @@ Let's explore the other directories found by gobuster:
 >
 > /lanaguages/ --> nothing of value
 
-![](<../../.gitbook/assets/7 (2).JPG>)
+![](<../../.gitbook/assets/7 (2) (1).JPG>)
 
 ![](<../../.gitbook/assets/8 (3) (1).JPG>)
 

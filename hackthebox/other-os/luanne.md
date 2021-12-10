@@ -279,7 +279,7 @@ According to the article, if the developer allows unsanitized user input to be p
 
 [http://10.10.10.218/weather/forecast?city=London');os.execute("id")--](http://10.10.10.218/weather/forecast?city=London%27\);os.execute\(%22id%22\)--)
 
-![](<../../.gitbook/assets/7 (2) (1).JPG>)
+![](<../../.gitbook/assets/7 (2) (1) (1).JPG>)
 
 ## Gaining Access Method 1 - Browser
 
