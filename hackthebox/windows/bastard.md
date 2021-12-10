@@ -806,10 +806,6 @@ At line:128 char:21
 PS C:\inetpub\drupal-7.54>
 ```
 
-We can also try and transfer an executable binary.
-
-
-
 ## Winpeas.bat
 
 The "Winpeas" github repo also has a batch script which has less requirements than the binary executable does.
