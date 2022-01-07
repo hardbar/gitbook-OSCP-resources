@@ -1,2 +1,0 @@
-# Offsec Proving Grounds
-
