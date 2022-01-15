@@ -31,7 +31,6 @@
     * [Schooled](hackthebox/other-os/schooled.md)
     * [Luanne](hackthebox/other-os/luanne.md)
 * [Cheat Sheets](cheat-sheets/README.md)
-  * [SMB](cheat-sheets/smb.md)
   * [Msfvenom](cheat-sheets/msfvenom.md)
   * [Powershell (Offensive)](cheat-sheets/powershell-offensive.md)
 * [Privilege Escalation](privilege-escalation/README.md)
