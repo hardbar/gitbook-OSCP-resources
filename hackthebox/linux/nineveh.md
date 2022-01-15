@@ -4,7 +4,7 @@ description: 10.10.10.43
 
 # Nineveh
 
-![](<../../.gitbook/assets/1 (4).JPG>)
+![](<../../.gitbook/assets/1 (4) (1).JPG>)
 
 ## Overview
 

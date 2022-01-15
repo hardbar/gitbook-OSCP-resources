@@ -26,6 +26,7 @@
   * [Windows](hackthebox/windows/README.md)
     * [Legacy](hackthebox/windows/untitled.md)
     * [Bastard](hackthebox/windows/bastard.md)
+    * [Chatterbox](hackthebox/windows/chatterbox.md)
   * [Other OS](hackthebox/other-os/README.md)
     * [Schooled](hackthebox/other-os/schooled.md)
     * [Luanne](hackthebox/other-os/luanne.md)

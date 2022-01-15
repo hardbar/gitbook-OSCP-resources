@@ -4,7 +4,7 @@ description: 10.10.10.88
 
 # TartarSauce
 
-![](<../../.gitbook/assets/1 (4) (1) (1).JPG>)
+![](<../../.gitbook/assets/1 (4) (1) (1) (1).JPG>)
 
 ## Overview
 

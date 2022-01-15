@@ -4,7 +4,7 @@ description: 10.10.10.123
 
 # FriendZone
 
-![](<../../.gitbook/assets/1 (4) (1).JPG>)
+![](<../../.gitbook/assets/1 (4) (1) (1).JPG>)
 
 ## Overview
 
