@@ -33,7 +33,7 @@
 * [Cheat Sheets](cheat-sheets/README.md)
   * [SMB](cheat-sheets/smb.md)
   * [Msfvenom](cheat-sheets/msfvenom.md)
-  * [Commands Cheat Sheet](cheat-sheets/commands-cheat-sheet.md)
+  * [Powershell (Offensive)](cheat-sheets/powershell-offensive.md)
 * [Privilege Escalation](privilege-escalation/README.md)
   * [Linux](privilege-escalation/linux.md)
   * [Windows](privilege-escalation/windows.md)
