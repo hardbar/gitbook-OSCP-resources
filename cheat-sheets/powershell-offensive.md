@@ -105,6 +105,29 @@ Get the powershell version/s:
 $PSVersionTable
 ```
 
+Ge the Powershell module paths on the system:
+
+```
+$Env:PSModulePath
+```
+
+
+
+Get the OS Architecture:
+
+> For \[IntPtr]::Size output:
+>
+> 4 = 32bit
+>
+> 8 = 64bit
+
+```
+$ENV:PROCESSOR_ARCHITECTURE
+(Get-CimInstance Win32_operatingsystem).OSArchitecture
+(Get-WmiObject Win32_OperatingSystem).OSArchitecture
+[IntPtr]::Size
+```
+
 Get the dotnet version/s:
 
 ```
@@ -439,7 +462,15 @@ Get-ADGroupMember -Identity Administrators
 Get-ADPrincipalGroupMembership -Identity Administrator
 ```
 
+Get list of Service Principle Names for a specified domain:
 
+> \-T = perform query on the speicified domain or forest (when -F is also used)
+>
+> \-Q = query for existence of SPN
+
+```
+SetSPN -T domain.name -Q */*
+```
 
 
 
