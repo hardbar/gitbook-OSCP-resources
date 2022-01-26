@@ -25,6 +25,7 @@ Get-Service | Get-Member -MemberType Property
 List available modules:
 
 ```
+Get-Module
 Get-Module -ListAvailable
 ```
 
@@ -57,6 +58,12 @@ Get the execution policy:
 ```
 Get-ExecutionPolicy
 Get-ExecutionPolicy -List | Format-Table -AutoSize
+```
+
+Set the execution policy:
+
+```
+Set-ExecutionPolicy Bypass -Scope CurrentUser
 ```
 
 Bypass execution restriction only for a specific operation/command:
