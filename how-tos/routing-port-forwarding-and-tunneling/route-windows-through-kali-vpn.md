@@ -17,7 +17,7 @@
 * For the example network setup shown in the diagram below, we'll assign and use the 192.168.10.0/29 subnet for the VM to VM connection via VMnet2.
 * The subnet/s in the target VPN network. An easy way to obtain this information is to check the route table on the Linux VM after establishing the VPN connection to the target network. This information should be gathered before proceeding.
 
-![](../.gitbook/assets/ip\_forwarding1.JPG)
+![](../../.gitbook/assets/ip\_forwarding1.JPG)
 
 {% hint style="warning" %}
 This guide does not show how to install the VM software or VM machines or the configuration of the private/custom network between the two VM machines.&#x20;
