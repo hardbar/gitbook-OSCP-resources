@@ -479,7 +479,11 @@ Get list of Service Principle Names for a specified domain:
 SetSPN -T domain.name -Q */*
 ```
 
+Get the specified account SID:
 
+```
+Get-AdUser -Identity Administrator | Select Name, SID, UserPrincipalName
+```
 
 
 
