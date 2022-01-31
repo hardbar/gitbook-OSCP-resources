@@ -19,14 +19,18 @@ Below is a diagram which shows the Kerberos authentication process. What is impo
 
 ![Source: https://adsecurity.org/?p=1667](../../.gitbook/assets/kerberos\_tickets1.JPG)
 
-## Attack tools
+## Attack Requirements
 
-The list of tools below contains some of the tools that can be used for this attack. Note that some of the listed tools do the same thing, and so it's down to user preference as to which tools are used. In order to complete this attack, we need to do the following, and so any tool that can assist with providing the following functionality can be used:
+&#x20;In order to complete this attack, we need to do the following, and so any tool that can assist with providing the following functionality can be used:
 
 * Query AD and extract data including user account information
 * Find an account (user, service) which has the 'DONT\_REQUIRE\_PREAUTH' flag enabled
 * Extract the TGT hash for the account
 * Crack the hash
+
+## Attack Tools
+
+The list of tools below contains some of the tools that can be used for this attack. Note that some of the listed tools do the same thing, and so it's down to user preference as to which tools are used.
 
 ### Tools:
 
