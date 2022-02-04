@@ -37,6 +37,7 @@
   * [Active Directory Attacks](attack-anatomy/active-directory-attacks/README.md)
     * [AS-REP Roast](attack-anatomy/active-directory-attacks/as-rep-roast.md)
     * [Golden Ticket](attack-anatomy/active-directory-attacks/golden-ticket.md)
+    * [Kerberoasting](attack-anatomy/active-directory-attacks/kerberoasting.md)
 * [Privilege Escalation](privilege-escalation/README.md)
   * [Linux](privilege-escalation/linux.md)
   * [Windows](privilege-escalation/windows.md)
