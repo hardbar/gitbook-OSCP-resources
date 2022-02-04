@@ -80,13 +80,7 @@ psexec.py testdomain.local/administrator:Password1@dc1.testdomain.local cmd.exe
 
 {% embed url="https://adsecurity.org/?p=2293" %}
 
-{% embed url="https://www.kali.org/tools/gpp-decrypt" %}
-
-{% embed url="https://grimhacker.com/2015/04/10/gp3finder-group-policy-preference-password-finder" %}
-
-[https://bitbucket.org/grimhacker/gpppfinder/src/master/](https://bitbucket.org/grimhacker/gpppfinder/src/master/)
-
-[https://bitbucket.org/grimhacker/gpppfinder/downloads/](https://bitbucket.org/grimhacker/gpppfinder/downloads/)
+{% embed url="https://www.secureauth.com/labs/open-source-tools/impacket" %}
 
 {% embed url="https://msrc-blog.microsoft.com/2014/05/13/ms14-025-an-update-for-group-policy-preferences" %}
 
