@@ -459,7 +459,15 @@ cd TMPSHARE:
 
 ## Active Directory
 
-Commands below require the "ActiveDirectory" module to be installed:
+Most of the commands below require the "ActiveDirectory" module to be installed.
+
+To import the module:
+
+```
+Import-module ActiveDirectory
+```
+
+### Information Gathering
 
 Gather domain information:
 
@@ -474,7 +482,9 @@ Get-ADForest
 Get-ADForest -Identity <ForestName>
 (Get-ADForest).Domains
 Get-ADUser -Identity Administrator -Properties *
+Get-ADUser Administrator -Properties Memberof | Select -ExpandProperty memberOf
 Get-ADUser -Filter 'Name -like "*SvcAccount"' | Format-Table Name,SamAccountName -A
+Get-ADUser -Filter {MemberOf -RecursiveMatch "CN=Domain Admins,OU=Users,OU=lab,DC=contoso,dc=com"}
 Get-ADUser -LDAPFilter '(!userAccountControl:1.2.840.113556.1.4.803:=2)'
 Get-ADComputer
 Get-ADComputer -Filter *
@@ -482,9 +492,15 @@ Get-ADComputer -Filter 'Name -like "comp*"' -Properties IPv4Address | FT Name,DN
 Get-ADComputerServiceAccount
 Get-ADGroup
 Get-ADGroup -Identity Administrators
+Get-ADGroup –LDAPFilter (member:1.2.840.113556.1.4.1941:=CN=Administrator,OU=Employees,OU=lab,DC=contoso,DC=com,)
 Get-ADGroupMember
 Get-ADGroupMember -Identity Administrators
+Get-ADGroupMember -Identity Administrators -Recursive | ft name
+Get-ADGroupMember -Identity Administrators | foreach { Get-ADUser $_ -Properties * }
+Get-ADGroupMember -Recursive Administrators | ForEach {Get-ADUser -filter {samaccountname -eq $_.SamAccountName} -Properties displayName, company, title, department } | Format-Table displayName,company,department,title -AutoSize
 Get-ADPrincipalGroupMembership -Identity Administrator
+Get-ADPrincipalGroupMembership Administrator | where {$_ -like "*allow*"} | Sort-Object | select -ExpandProperty name
+
 ```
 
 Get list of Service Principle Names for a specified domain:
@@ -502,6 +518,80 @@ Get the specified account SID:
 ```
 Get-AdUser -Identity Administrator | Select Name, SID, UserPrincipalName
 ```
+
+### Groups
+
+Get the folders that an AD group has access to and export the results to CSV:
+
+```
+Get-ChildItem \\server\uncpathgoeshere -recurse | ForEach-Object {Get-Acl $_.FullName} | select pspath, psparentpath, pschildname, path, owner, group, AccessToString | Export-CSV C:\folder_perms.csv
+```
+
+## Export to CSV
+
+Export the results of any PowerShell command to a CSV file by appending the following to a command:
+
+```
+| Export-Csv -NoTypeInformation .\filename.csv -Encoding UTF8
+```
+
+## Run command as another user
+
+If you need to run a command as another user within PowerShell, this is one way to do it:
+
+```
+$username = 'user1'
+$password = ConvertTo-SecureString -AsPlainText 'sillypassword' -Force
+$cred = New-Object System.Management.Automation.PSCredential -ArgumentList $username,$password
+Invoke-Command -ComputerName "computer1" -Credential $cred -ScriptBlock {whoami} 
+```
+
+## Remote Connectivity
+
+This section will cover the various methods to connect remotely to a target system via PowerShell on a Windows attack machine.
+
+### PSSession
+
+By default, PSSession will connect to the target system using WSMan/WinRM over HTTP on TCP port 5985. To connect to a remote computer, the remote computer must be listening on the port that the connection uses.
+
+```
+Enter-PSSession -ComputerName Server01 -Credential Domain01\User01
+Enter-PSSession -ComputerName Server01 -Port 90 -Credential Domain01\User01
+```
+
+Connect to a remote system using PSSession and SSH. To connect to a remote computer, the remote computer must be configured with the SSH service (SSHD) and must be listening on the port that the connection uses. The default port for SSH is 22.
+
+```
+Enter-PSSession -HostName UserA@LinuxServer01
+PS> Enter-PSSession -HostName UserA@LinuxServer02:22 -KeyFilePath c:\<path>\userAKey_rsa
+```
+
+### WinRM over SSL
+
+This requires a lot of setup to be done on the target system, which will not be covered here. For a detailed writeup of how to set this up check out the following article:
+
+{% embed url="https://adamtheautomator.com/winrm-ssl" %}
+
+Prerequisites:
+
+* A target system that has WinRM over SSL enabled on TCP port 5986
+* An exported user client authentication certificate file (.pfx)
+
+On the Windows attack machine, connect to the target as follows:
+
+* Create a password object
+* Import the PFX client auth certificate
+* Get the thumbprint
+* Connect to the target
+
+```
+$password = ConvertTo-SecureString 'sillypassword' -AsPlainText -Force
+Import-pfxCertificate -FilePath .\usercert.pfx -CertStoreLocation Cert:\CurrentUser\My -Password $password
+Get-ChildItem Cert:\CurrentUser\My
+Enter-PSSession -ComputerName comp1.contoso.com -CertificateThumbprint <thumbprint>
+```
+
+
 
 
 
