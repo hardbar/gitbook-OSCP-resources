@@ -118,8 +118,6 @@ Ge the Powershell module paths on the system:
 $Env:PSModulePath
 ```
 
-
-
 Get the OS Architecture:
 
 > For \[IntPtr]::Size output:
@@ -176,6 +174,12 @@ Get list of listening TCP ports:
 
 ```
 Get-NetTcpConnection -State Listen
+```
+
+Check the Language Mode:
+
+```
+$ExecutionContext.SessionState.LanguageMode
 ```
 
 ## File Operations
@@ -308,6 +312,22 @@ Add rule to allow inbound connection on the specified port from the specified IP
 ```
 New-NetFirewallRule -DisplayName 'For helpdesk access' –RemoteAddress 10.10.14.27 -Direction Inbound -Protocol TCP –LocalPort 1337 -Action Allow
 ```
+
+## Event Logging
+
+Turn off PowerShell Event logging (requires an elevated shell):
+
+```
+$PSHOME\RegisterManifest.ps1 -Unregister
+```
+
+Turn it back on:
+
+```
+$PSHOME\RegisterManifest.ps1
+```
+
+
 
 ## Anti-Virus
 
@@ -590,6 +610,40 @@ Import-pfxCertificate -FilePath .\usercert.pfx -CertStoreLocation Cert:\CurrentU
 Get-ChildItem Cert:\CurrentUser\My
 Enter-PSSession -ComputerName comp1.contoso.com -CertificateThumbprint <thumbprint>
 ```
+
+## Powershell v2
+
+Windows PowerShell 2.0 (deprecated in August, 2017) is missing a significant amount of the hardening and security features added in versions 3, 4, and 5.
+
+Run a lower version of PowerShell to potentially evade logging and other restrictions. From the run popup window or from the cli:
+
+```
+powershell -version 2
+```
+
+Connect to a remote machine via PowerShell 2.0. On the target system (Server01), in an elevated shell, create a session configuration as follows:
+
+```
+Register-PSSessionConfiguration -Name PS2 -PSVersion 2.0
+```
+
+On the attacker system:
+
+```
+New-PSSession -ComputerName Server01 -ConfigurationName PS2
+```
+
+View PowerShell log entries within PowerShell:
+
+```
+Get-EventLog 'Windows PowerShell' -EntryType Information -InstanceId 800
+```
+
+## PowerShell Event Logging Comparison
+
+![](../.gitbook/assets/powershell\_event\_logging.JPG)
+
+
 
 
 
