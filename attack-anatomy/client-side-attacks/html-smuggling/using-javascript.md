@@ -2,9 +2,13 @@
 
 Overview of steps required to embed JavaScript within an HTML document that will trigger an automatic download of a first stage payload to a target system when the web page is visited by the victim. The file still has to be saved to disk by the user and then manually executed, which will require manipulating the user to performs these tasks via social engineering and/or pretexting.
 
+{% hint style="info" %}
+This example is for educational purposes only. In the real world, this code will be further obfuscated in order to evade detection.
+{% endhint %}
+
 ### Steps
 
-The steps below walks you through creating JavaScript code that is compatible with Chrome. For IE/Edge, see the full script section for the compatible code. Note that the IE/Edge code does not work with Chrome.
+The steps below walks you through creating JavaScript code that is compatible with Chrome. For IE/Edge, see the full script section for the compatible code. Note that the IE/Edge code does not work with Chrome and vice versa.
 
 #### Step 1:
 
