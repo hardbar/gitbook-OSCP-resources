@@ -4,7 +4,7 @@ Overview of steps required to embed JavaScript within an HTML document that will
 
 ### Steps
 
-The steps below walks you through creating the JavaScript code compatible with Chrome. For IE/Edge, see the full script section for the compatible code.
+The steps below walks you through creating JavaScript code that is compatible with Chrome. For IE/Edge, see the full script section for the compatible code.
 
 #### Step 1:
 
