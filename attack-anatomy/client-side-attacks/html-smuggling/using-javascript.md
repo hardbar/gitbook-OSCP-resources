@@ -1,6 +1,6 @@
 # Using JavaScript
 
-Overview of steps required to embed JavaScript within an HTML document that will trigger an automatic download of a first stage payload to a target system when the web page is visited by the victim. The file still has to be saved to disk by the user and then manually executed, which will require manipulating the user to performs these tasks via social engineering and/or pretexting.
+Overview of steps required to embed JavaScript within an HTML document that will trigger an automatic download of a first stage payload to a target system when the web page is visited by the victim. The file still has to be saved to disk by the user and then manually executed, which will require manipulating the user to performs these tasks via social engineering and/or a form of pretexting.
 
 {% hint style="info" %}
 This example is for educational purposes only. In the real world, this code will be further obfuscated in order to evade detection.
