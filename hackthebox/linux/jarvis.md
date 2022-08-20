@@ -469,7 +469,7 @@ Nice, we have extracted some user credentials, albeit a username and a hashed pa
 
 > DBadmin:\*2D2B7A5E4E637B8FBA1D17F40318F277D29964D0
 
-We can use an online hash cracker to easily crack this hash, for example [https://crackstation.net/](https://crackstation.net). We now have the following set of creds:
+We can use an online hash cracker to easily crack this hash, for example [https://crackstation.net/](https://crackstation.net/). We now have the following set of creds:
 
 > DBadmin:imissyou
 

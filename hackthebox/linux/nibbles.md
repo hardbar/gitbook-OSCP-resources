@@ -133,7 +133,7 @@ The initial gobuster did not find anything, however, when we visited the site we
 
 Let's have a look at the page source and make a note of anything interesting:
 
-* The page source for [http://10.10.10.75/](http://10.10.10.75) reveals another route; /nibbleblog/
+* The page source for [http://10.10.10.75/](http://10.10.10.75/) reveals another route; /nibbleblog/
 * Nothing found in page source at the [http://10.10.10.75/nibbleblog/](http://10.10.10.75/nibbleblog/) page
 
 #### Review the source code for any scripts that are being used on each page
@@ -144,7 +144,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 #### Browsing
 
-The page at [http://10.10.10.75/](http://10.10.10.75) does not have much, however, if we view the page source, we see a comment:
+The page at [http://10.10.10.75/](http://10.10.10.75/) does not have much, however, if we view the page source, we see a comment:
 
 ![](<../../.gitbook/assets/2 (4).JPG>)
 

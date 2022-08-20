@@ -192,7 +192,7 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 #### ​Browsing
 
-The site at [http://10.10.10.43/](http://10.10.10.43) is a static html page with some text.
+The site at [http://10.10.10.43/](http://10.10.10.43/) is a static html page with some text.
 
 ![](<../../.gitbook/assets/2 (6).JPG>)
 
@@ -208,7 +208,7 @@ In the page source we find the following comment:
 
 > @admin! MySQL is been installed.. please fix the login page! \~amrois
 
-The site at [https://10.10.10.43/](https://10.10.10.43) contains only an image, ninevehForAll.png:
+The site at [https://10.10.10.43/](https://10.10.10.43/) contains only an image, ninevehForAll.png:
 
 ![](<../../.gitbook/assets/3 (6) (1).JPG>)
 

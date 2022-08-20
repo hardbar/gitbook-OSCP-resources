@@ -350,7 +350,7 @@ Papers: No Results
 
 There are quite a few results here. We'll come back to this later.
 
-Next, we browse to the page at [https://10.10.10.7:10000/](https://10.10.10.7:10000), where we get yet another login form, this time for "Webmin".
+Next, we browse to the page at [https://10.10.10.7:10000/](https://10.10.10.7:10000/), where we get yet another login form, this time for "Webmin".
 
 ![](<../../.gitbook/assets/7 (3) (1).JPG>)
 

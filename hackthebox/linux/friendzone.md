@@ -281,7 +281,7 @@ Visiting the page at [https://administrator1.friendzone.red/dashboard.php](https
 First, we need to find a way to upload something. Looking at the output from the dig comand, we saw that the zone transfer also included "uploads.friendzone.red", so we can try upload something there.
 
 {% hint style="danger" %}
-I ran into an issue with accessing the page at [https://uploads.friendzone.red/](https://uploads.friendzone.red) which may or may not relate to a misconfiguration on my Kali system. With the nameserver entry in the /etc/resolv.conf file, I was unable to access the uploads page, but when I removed the entry and added it to the /etc/hosts file it worked. After playing around with it for a while, I decided to move on as I couldn't figure out where the problem was.
+I ran into an issue with accessing the page at [https://uploads.friendzone.red/](https://uploads.friendzone.red/) which may or may not relate to a misconfiguration on my Kali system. With the nameserver entry in the /etc/resolv.conf file, I was unable to access the uploads page, but when I removed the entry and added it to the /etc/hosts file it worked. After playing around with it for a while, I decided to move on as I couldn't figure out where the problem was.
 {% endhint %}
 
 ![](<../../.gitbook/assets/3 (1).JPG>)
@@ -345,7 +345,7 @@ We get a page back with the image, a.jpg, and a timestamp. What happens if we re
 
 Now we are getting an error. Probing further, let's try "uploads". We don't get any error this time, but this is because the uploads.php file is not in the same directory that we are currently in. We could try and use directory traversal techniques to see if we can load other PHP files.
 
-Let's run gobuster again on the [https://uploads.friendzone.red/](https://uploads.friendzone.red) site:
+Let's run gobuster again on the [https://uploads.friendzone.red/](https://uploads.friendzone.red/) site:
 
 ```
 └─$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php -u https://uploads.friendzone.red/ -k -x php

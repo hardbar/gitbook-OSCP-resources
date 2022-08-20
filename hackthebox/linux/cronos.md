@@ -190,11 +190,11 @@ Let's have a look at the scripts using the browser dev tools and make a note of 
 
 #### ​Browsing
 
-Let's check out the website at [http://www.cronos.htb/](http://www.cronos.htb)
+Let's check out the website at [http://www.cronos.htb/](http://www.cronos.htb/)
 
 ![](<../../.gitbook/assets/3 (7).JPG>)
 
-Let's check out the website at [http://admin.cronos.htb/](http://admin.cronos.htb)
+Let's check out the website at [http://admin.cronos.htb/](http://admin.cronos.htb/)
 
 ![](<../../.gitbook/assets/2 (5).JPG>)
 

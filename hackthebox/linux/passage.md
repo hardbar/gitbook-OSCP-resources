@@ -545,7 +545,7 @@ f669a6f691f98ab0562356c0cd5d5e7dcdc20a07941c86adcfce9af3085fbeca
 
 ```
 
-We'll use [https://crackstation.net/](https://crackstation.net) to crack them, however, we only get two passwords out of the 5:
+We'll use [https://crackstation.net/](https://crackstation.net/) to crack them, however, we only get two passwords out of the 5:
 
 ![](<../../.gitbook/assets/11 (2) (1) (1).JPG>)
 
