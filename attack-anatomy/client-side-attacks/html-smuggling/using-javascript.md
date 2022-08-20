@@ -50,7 +50,7 @@ var outName = 'winsys64.exe';
 
 #### Step 4:
 
-Store the base64 encoded payload in a variable. Remove any line breaks or new lines from the base64 encoded executable to embed it as one continuous string (alternatively, wrap each line in quotes).
+Store the base64 encoded payload in a variable. Remove any line breaks or new lines from the base64 encoded executable to embed it as one continuous string (or, wrap each line in quotes).
 
 ```javascript
 var payL ='TvqQAAMAAAAEAAAA//8AAAA…’ <--base64 encoded binary -->
