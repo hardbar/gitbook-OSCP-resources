@@ -2,6 +2,12 @@
 
 Overview of steps required to embed JavaScript within an HTML document that will trigger an automatic download of a first stage payload to a target system when the web page is visited by the victim. The file still has to be saved to disk by the user and then manually executed, which will require manipulating the user to performs these tasks via social engineering and/or a form of pretexting.
 
+For Chrome, the user will have to select to "keep" the file in order to save it to disk.
+
+For IE/Edge, the user will have to select to "run" to execute or "save" to save to disk.
+
+Windows SmartScreen is also likely to pop up to block execution because the executable originated from a download via a browser. The user will have to click to allow the execution of the file.
+
 {% hint style="info" %}
 This example is for educational purposes only. In the real world, this code will be further obfuscated in order to evade detection.
 {% endhint %}
