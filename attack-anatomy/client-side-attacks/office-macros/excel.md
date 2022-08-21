@@ -16,7 +16,13 @@ End Sub
 
 ## VBA PowerShell Download Cradle and Code Execution
 
+{% hint style="info" %}
+VBA in excel has a "Wait" function, however, for some reason I was unable to get it to work. Example below:
 
+`Application.Wait (Now + TimeValue("0:00:10"))`
+
+`Note that this will suspend all other events until the delay period is complete.`
+{% endhint %}
 
 ```vba
 Private Sub Workbook_Open()
