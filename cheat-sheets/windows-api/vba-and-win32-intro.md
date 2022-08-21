@@ -1,8 +1,4 @@
-# VBA
-
-{% hint style="warning" %}
-This page is incomplete
-{% endhint %}
+# VBA & Win32 Intro
 
 ## Key Concepts
 
@@ -14,15 +10,9 @@ You pass an argument by value by specifying the "ByVal" keyword for the correspo
 
 You pass an argument by reference by specifying the "ByRef" keyword for the corresponding parameter in the procedure definition. When you use this passing mechanism, Visual Basic gives the procedure a direct reference to the underlying programming element in the calling code.
 
-
-
-
-
 ## Calling Windows APIs with VBA
 
 Use a "Declare" statement to declare a reference to an external procedure in a dynamic-link library (DLL). The statement should include the name of the function, the DLL it resides in, the argument data types and the return value data types.
-
-
 
 ## Data Type Conversion Table
 
@@ -55,9 +45,9 @@ The table below provides a mapping of c data types to their corresponding VBA da
 |           NULL          | <p>As Any or<br>ByVal variable As Long</p> |          Only supply ByVal Nothing, ByVal 0& or vbNullString as value         |
 |           VOID          |                Sub procedure               |             Not applicable; void means empty, nothing, nada, nope             |
 
-## Example
+## Example 1
 
-In this example, we'll use the "GetUserNameA" and "GetComputerNameA" functions to retrieve the name of the user associated with the current thread, and the NetBIOS name of the computer. After retrieving the data, we'll display it in a "MessageBox".
+In this example, we'll use the "GetUserNameA" and "GetComputerNameA" functions from the Win32 API to retrieve the name of the user associated with the current thread, and the NetBIOS name of the computer. After retrieving the data, we'll display it in a message box using the VBA "MsgBox" function.
 
 In order to use these functions, we will need to consult the documentation for each on MSDN (see Resources section for links).&#x20;
 
@@ -216,6 +206,8 @@ Sub NewMacro()
     macro1
 End Sub
 ```
+
+
 
 ## Resources
 
