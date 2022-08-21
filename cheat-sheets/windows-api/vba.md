@@ -31,7 +31,7 @@ The table below provides a mapping of c data types to their corresponding VBA da
 |       C data type       |                 Declare as                 |                                  Description                                  |
 | :---------------------: | :----------------------------------------: | :---------------------------------------------------------------------------: |
 |        BYTE, CHAR       |           ByVal variable As Byte           |                          A single byte in the memory                          |
-|           BOOL          |           ByVal variable As Long           |                 Long that's that should have the value 1 or 0                 |
+|           BOOL          |           ByVal variable As Long           |                     Long that should have the value 1 or 0                    |
 |           ATOM          |          ByVal variable As Integer         |                   An expression that evaluates to an Integer                  |
 |          SHORT          |          ByVal variable As Integer         |          An 16 bit value, like the integer type used in Visual Basic          |
 |           INT           |           ByVal variable As Long           |                            A 32 bits integer value                            |
@@ -78,13 +78,26 @@ BOOL GetUserNameA(
 
 Here is the converted types:
 
-> In C, LPSTR is a pointer to a string. In VBA, the String object also holds a pointer to a string. For this reason, we can pass the argument by value because the types match.
+> In C, LPSTR is a pointer to a string. In VBA, the String object also holds a pointer to a string. For this reason, we can pass the argument by value because the types match.\
+> LPSTR --> ByVal lpBuffer as String
 >
-> LPSTR --> ByVal as String
+> In C, LPDWORD is a reference (pointer) to a DWORD, which is the maximum size of a buffer that will contain the string. In this case, we convert it to a VBA Long data type and pass it by reference to obtain a pointer.\
+> LPDWORD --> ByRef pcbBuffer as Long
 >
-> LPDWORD -->&#x20;
+> In C, the return type is a Boolean, which can be translated into a Long in VBA.\
+> BOOL --> As Long
 
-GetComputerName function prototype:
+The "Declare" statement is as follows:
+
+```vba
+Private Declare Function GetUserName Lib "advapi32.dll" Alias "GetUserNameA" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
+```
+
+
+
+#### GetComputerName&#x20;
+
+Here is the function prototype:
 
 ```csharp
 BOOL GetComputerNameA(
@@ -102,11 +115,13 @@ We will also need to know which DLL these functions reside in, which is also ava
 
 
 
+{% hint style="info" %}
+The Declare statements must be placed outside the function or subroutine in VBA.
+{% endhint %}
 
 
 
-
-
+### Step 2: Defining the Variables for the imported function
 
 
 
@@ -119,6 +134,8 @@ We will also need to know which DLL these functions reside in, which is also ava
 {% embed url="https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/data-types/" %}
 
 {% embed url="https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/procedures/differences-between-passing-an-argument-by-value-and-by-reference" %}
+
+{% embed url="https://docs.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/data-types/value-types-and-reference-types" %}
 
 {% embed url="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getusernamea" %}
 
