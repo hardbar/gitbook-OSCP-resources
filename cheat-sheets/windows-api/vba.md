@@ -1,5 +1,9 @@
 # VBA
 
+{% hint style="warning" %}
+This page is incomplete
+{% endhint %}
+
 ## Key Concepts
 
 ### Passing by Value
@@ -53,7 +57,7 @@ The table below provides a mapping of c data types to their corresponding VBA da
 
 ## Example
 
-In this example, we'll use the "GetUserName" and "GetComputerName" functions to retrieve the name of the user associated with the current thread, and the computer hostname. After retrieving the data, we'll display it in a "MessageBox".
+In this example, we'll use the "GetUserNameA" and "GetComputerNameA" functions to retrieve the name of the user associated with the current thread, and the NetBIOS name of the computer. After retrieving the data, we'll display it in a "MessageBox".
 
 In order to use these functions, we will need to consult the documentation for each on MSDN (see Resources section for links).&#x20;
 
@@ -65,7 +69,7 @@ To build the statement, we need the following information
 * the converted argument and return value data types
 * the DLL containing the function
 
-#### GetUserName:
+#### GetUserNameA:
 
 Here is the function prototype:
 
@@ -81,21 +85,23 @@ Here is the converted types:
 > In C, LPSTR is a pointer to a string. In VBA, the String object also holds a pointer to a string. For this reason, we can pass the argument by value because the types match.\
 > LPSTR --> ByVal lpBuffer as String
 >
-> In C, LPDWORD is a reference (pointer) to a DWORD, which is the maximum size of a buffer that will contain the string. In this case, we convert it to a VBA Long data type and pass it by reference to obtain a pointer.\
+> In C, LPDWORD is a reference (pointer) to a DWORD, which is the maximum size of a buffer that will contain a string. In this case, we convert it to a VBA Long data type and pass it by reference to obtain a pointer.\
 > LPDWORD --> ByRef pcbBuffer as Long
 >
 > In C, the return type is a Boolean, which can be translated into a Long in VBA.\
 > BOOL --> As Long
 
-The "Declare" statement is as follows:
+The DLL that contains this function:
+
+> GetUserNameA --> Advapi32.dll
+
+Using all the above information, we can build the "Declare" statement as follows:
 
 ```vba
-Private Declare Function GetUserName Lib "advapi32.dll" Alias "GetUserNameA" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
+Private Declare Function GetUserName Lib "advapi32.dll" Alias "GetUserNameA" (ByVal lpBuffer As String, ByRef pcbBuffer As Long) As Long
 ```
 
-
-
-#### GetComputerName&#x20;
+#### GetComputerNameA
 
 Here is the function prototype:
 
@@ -106,26 +112,110 @@ BOOL GetComputerNameA(
 );
 ```
 
-We will also need to know which DLL these functions reside in, which is also available in the function's documentation.
+Here is the converted types:
 
-> GetUserName --> Advapi32.dll\
-> GetComputerName --> Kernel32.dll
+> LPSTR --> ByVal lpBuffer as String
+>
+> LPDWORD --> ByRef nSize as Long
+>
+> BOOL --> As Long
 
+The DLL that contains this function:
 
+> GetComputerNameA --> Kernel32.dll
 
+Using all the above information, we can build the "Declare" statement as follows:
 
+```vba
+Private Declare Function GetComputerName Lib "Kernel32.dll" Alias "GetComputerNameA" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
+```
 
 {% hint style="info" %}
 The Declare statements must be placed outside the function or subroutine in VBA.
 {% endhint %}
 
-
-
 ### Step 2: Defining the Variables for the imported function
 
+Next, we need to define the variables to use with the imported functions, which includes, the return value (Long), the output buffer, and the size of the output buffer.
 
+```vba
+Dim result1 As Long
+Dim outBuff1 As String * 256
+Dim buffSize1 As Long
+buffSize1 = 256
 
+Dim result2 As Long
+Dim outBuff2 As String * 256
+Dim buffSize2 As Long
+buffSize2 = 256
+```
 
+### Step 3: Calling the imported functions
+
+Call the functions with the relevant parameters.
+
+```vba
+result1 = GetUserName(outBuff1, buffSize1)
+
+result2 = GetComputerName(outBuff2, buffSize2)
+```
+
+### Step 4: Finding the length of the returned string
+
+Before we can print the result, we need to find the string length, since we don't know how long the returned strings will be (username & computername).&#x20;
+
+In C, strings are terminated with a null byte character, and so we can use this to determine the string length. To do so, we use the "InStr" function which takes 3 arguments, the starting location, the string to search, and the search character (the null byte). This will return the location of the null byte. If we subtract 1 from that value, we'll have the length of the string.
+
+```vba
+strlen1 = InStr(1, outBuff1, vbNullChar) - 1
+  
+strlen2 = InStr(1, outBuff2, vbNullChar) - 1
+```
+
+### Step 5: Display the results in Message Box
+
+The code below will display the user name in the first box and the computer name in the second box.
+
+```vba
+MsgBox Left$(outBuff1, strlen1)
+MsgBox Left$(outBuff2, strlen2)
+```
+
+### The Full Code:
+
+```vba
+Private Declare Function GetUserName Lib "advapi32.dll" Alias "GetUserNameA" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
+Private Declare Function GetComputerName Lib "Kernel32.dll" Alias "GetComputerNameA" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
+
+Function macro1()
+  'get the user name
+  Dim result1 As Long
+  Dim outBuff1 As String * 256
+  Dim buffSize1 As Long
+  buffSize1 = 256
+  Dim strlen1 As Long
+  result1 = GetUserName(outBuff1, buffSize1)
+  strlen1 = InStr(1, outBuff1, vbNullChar) - 1
+
+  'get the computer name
+  Dim result2 As Long
+  Dim outBuff2 As String * 256
+  Dim buffSize2 As Long
+  buffSize2 = 256
+  Dim strlen2 As Long
+  result2 = GetComputerName(outBuff2, buffSize2)
+  strlen2 = InStr(1, outBuff2, vbNullChar) - 1
+
+  'display in message boxes
+  MsgBox Left$(outBuff1, strlen1)
+  MsgBox Left$(outBuff2, strlen2)
+
+End Function
+
+Sub NewMacro()
+    macro1
+End Sub
+```
 
 ## Resources
 
