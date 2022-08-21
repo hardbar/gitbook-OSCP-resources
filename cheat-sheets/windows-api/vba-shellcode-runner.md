@@ -10,13 +10,13 @@ This page is incomplete
 
 ## Overview
 
-High level steps required to build a shellcode runner in VBA that executes from memory:
+High level steps required to build a shellcode runner in VBA that executes in memory:
 
 1. Declare the Win32 API functions.
 2. Declare the relevant variables to use with the functions.
 3. Declare and instantiate a variable to hold the shellcode.
 4. Call VirtualAlloc to create space in memory for the shellcode.
-5. Call RtlMoveMemory to put the shellcode into the memory suing a For loop.
+5. Call RtlMoveMemory to put the shellcode into the memory using a For loop.
 6. Call CreateThread to execute the shellcode in memory.
 
 ## Win32 APIs
