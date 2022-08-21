@@ -1,6 +1,12 @@
 # VBA Shellcode Runner
 
-A shellcode runner is a piece of code that executes shellcode in memory.&#x20;
+A shellcode runner is a piece of code that executes shellcode in memory.
+
+
+
+{% hint style="danger" %}
+This page is incomplete
+{% endhint %}
 
 ## Overview
 
@@ -25,11 +31,9 @@ The most common approach is to use the following three Win32 APIs from Kernel32.
 
 Usage of the these APIs is described below.
 
-![](../../.gitbook/assets/virtualalloc.JPG)
-
-![](../../.gitbook/assets/rtlmovememory.JPG)
-
-![](../../.gitbook/assets/createthread.JPG)
+{% hint style="warning" %}
+Insert diagrams depicting the Win32 API usage for the above APIs
+{% endhint %}
 
 {% hint style="danger" %}
 In order for a payload to execute, it needs to target the correct architecture. Verify the OS architecture as well as the application architecture to avoid potentially crashing a target system. For example, Office 2016 installs as 32-bit by default, even when installed on a 64-bit system.
