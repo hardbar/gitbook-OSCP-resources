@@ -10,7 +10,7 @@ This page is incomplete
 
 ## Overview
 
-High level steps required to build a shellcode runner in VBA that executes in memory:
+Overview of requirements to build a VBA shellcode runner in a VBA macro that executes in memory:
 
 1. Declare the Win32 API functions.
 2. Declare the relevant variables to use with the functions.
