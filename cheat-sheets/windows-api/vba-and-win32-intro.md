@@ -14,9 +14,13 @@ You pass an argument by reference by specifying the "ByRef" keyword for the corr
 
 Use a "Declare" statement to declare a reference to an external procedure in a dynamic-link library (DLL). The statement should include the name of the function, the DLL it resides in, the argument data types and the return value data types.
 
-## Data Type Conversion Table
+## Data Type Conversion
 
 The function arguments described in the MSDN documentation are native C types. In order for us to use the function in VBA, we need to convert the native types to their corresponding VBA data types.
+
+The following website documents the translations for the most commonly used Win32 APIs.
+
+{% embed url="http://www.pinvoke.net/" %}
 
 The table below provides a mapping of c data types to their corresponding VBA data types.
 
