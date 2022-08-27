@@ -182,6 +182,12 @@ Check the Language Mode:
 $ExecutionContext.SessionState.LanguageMode
 ```
 
+Get loaded assemblies:
+
+```
+[AppDomain]::CurrentDomain.GetAssemblies() | Sort-Object -Property fullname | Format-Table fullname
+```
+
 ## File Operations
 
 Get the access list permissions of a directory or file:
