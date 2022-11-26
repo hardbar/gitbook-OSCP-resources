@@ -529,6 +529,19 @@ Get-ADPrincipalGroupMembership Administrator | where {$_ -like "*allow*"} | Sort
 
 ```
 
+Finding trust relationships:
+
+```
+([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).GetAllTrustRelationships()
+
+```
+
+{% hint style="info" %}
+If there is no PowerShell access or access to the ActiveDirectory module, we can use the "nltest" tool:
+
+nltest /trusted\_domains
+{% endhint %}
+
 Get list of Service Principle Names for a specified domain:
 
 > \-T = perform query on the speicified domain or forest (when -F is also used)
