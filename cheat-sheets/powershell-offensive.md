@@ -51,6 +51,10 @@ Get-Command -Module PowerSploit
 Get-Help Get-System -examples
 ```
 
+## Filtering
+
+{% embed url="https://sid-500.com/2018/02/15/powershell-for-beginners-part-10-filtering-and-where-object/" %}
+
 ## Command/Script Execution
 
 Get the execution policy:
